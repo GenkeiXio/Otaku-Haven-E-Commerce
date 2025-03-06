@@ -26,8 +26,8 @@ class OrderChartPie
         $status_name = json_decode(json_encode($order->pluck('status_name_text')), true);
         $total = json_decode(json_encode($order->pluck('total')), true);
         return $this->chart->donutChart()
-            ->setTitle('Diagram Transaksi.')
-            ->setSubtitle('Tahun ' . Date('Y'))
+            ->setTitle('Transaction Chart.')
+            ->setSubtitle('Year ' . Date('Y'))
             ->addData($total)
             ->setLabels($status_name);
     }

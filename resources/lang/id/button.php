@@ -1,12 +1,12 @@
 <?php
 return [
-    'save'             => 'Simpan',
+    'save'             => 'Save',
     'edit'             => 'Edit',
-    'udpdate'          => 'Perbarui',
-    'delete'           => 'Hapus',
-    'add'              => 'Tambah',
+    'udpdate'          => 'Update',  
+    'delete'           => 'Delete',
+    'add'              => 'Add',
     'detail'           => 'Detail',
-    'cancel'           => 'Batalkan',
-    'select'           => 'Pilih',
-    'back'             => 'Kembali',
+    'cancel'           => 'Cancel',
+    'select'           => 'Select',
+    'back'             => 'Back',
 ];

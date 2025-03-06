@@ -13,10 +13,10 @@
                                     <a href="javascript:;" class="btn btn-success btn-icon icon-left" data-toggle="modal"
                                         data-target="#resiModal" data-id="{{ $data['order']->invoice_number }}"><i
                                             class="fa fa-truck"></i>
-                                        Input Resi</a>
+                                        Input Tracking Number</a>
                                     <a href="{{ route('feature.order.index') }}"
                                         class="btn btn-primary btn-icon icon-left"><i class="fa fa-arrow-left"></i>
-                                        Kembali</a>
+                                        Back</a>
                                 </div>
                             </div>
                             <hr class="mb-2">
@@ -161,19 +161,19 @@
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="resiModalLabel">Input Resi Pengiriman</h5>
+                        <h5 class="modal-title" id="resiModalLabel">Input Delivery Tracking Number</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="">Nomor Pesanan</label>
+                            <label for="">Order Number</label>
                             <input type="text" class="form-control" name="invoice_number" id="invoice_number"
                                 readonly>
                         </div>
                         <div class="form-group">
-                            <label for="">Nomor Resi</label>
+                            <label for="">Tracking Number</label>
                             <input type="text" class="form-control" name="receipt_number" id="receipt_number"
                                 required>
                         </div>
@@ -187,13 +187,4 @@
             </form>
         </div>
     </div>
-@endpush
-@push('js')
-    <script>
-        $('#resiModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget);
-            var id = button.data('id');
-            $('#invoice_number').val(id);
-        });
-    </script>
 @endpush

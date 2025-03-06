@@ -4,7 +4,7 @@
         @slot('action', route('setting.shippingUpdate'))
         @slot('content')
             <div class="form-group">
-                <label for="">Provinsi</label>
+                <label for="">Province</label>
                 <select name="province_id" id="province_id" class="form-control">
                     @foreach ($data['provinces'] as $province)
                         <option value="{{ $province['province_id'] }}" {{ $data['setting']->province_id == $province['province_id'] ? 'selected' : '' }}>{{ $province['province'] }}
@@ -13,7 +13,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="">Kota/Kabupaten</label>
+                <label for="">City/Regency</label>
                 <select name="city_id" id="city_id" class="form-control">
                     @foreach ($data['city'] as $city)
                         <option value="{{ $city['city_id'] }}" {{ $data['setting']->city_id == $city['city_id'] ? 'selected' : '' }}>{{ $city['type'] }} {{ $city['city_name'] }}
@@ -22,7 +22,7 @@
                 </select>
             </div>
             <div class="text-right">
-                <button type="submit" class="btn btn-primary me-0" href="#">Simpan</button>
+                <button type="submit" class="btn btn-primary me-0" href="#">Save</button>
             </div>
             </div>
         @endslot

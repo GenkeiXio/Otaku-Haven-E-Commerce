@@ -69,7 +69,7 @@
         <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4>Grafik Penjualan</h4>
+                <h4>Sales Chart</h4>
                 <div class="card-header-action">
                     <a data-collapse="#mycard-collapse" class="btn btn-icon btn-info" href="#"><i class="fas fa-minus"></i></a>
                 </div>
@@ -173,7 +173,7 @@
                             <h4>My order hasn't arrived yet</h4>
                         </div>
                         <div class="ticket-info">
-                            <div>Laila Tazkiah</div>
+                            <div>Laila Dilemma</div>
                             <div class="bullet"></div>
                             <div class="text-primary">1 min ago</div>
                         </div>
@@ -183,7 +183,7 @@
                             <h4>Please cancel my order</h4>
                         </div>
                         <div class="ticket-info">
-                            <div>Rizal Fakhri</div>
+                            <div>Jerald Jay Buban</div>
                             <div class="bullet"></div>
                             <div>2 hours ago</div>
                         </div>
@@ -193,7 +193,7 @@
                             <h4>Do you see my mother?</h4>
                         </div>
                         <div class="ticket-info">
-                            <div>Syahdan Ubaidillah</div>
+                            <div>Precious Gwynth Mallo</div>
                             <div class="bullet"></div>
                             <div>6 hours ago</div>
                         </div>

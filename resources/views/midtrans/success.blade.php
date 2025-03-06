@@ -7,6 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="{{ route('transaction.index') }}">Kembali Ke Halaman Utama</a>
+    <a href="{{ route('transaction.index') }}">Back to Main Page</a>
 </body>
 </html>

@@ -1,26 +1,26 @@
 <?php
 return [
     // GLobal Field
-    'name' => 'Nama',
+    'name' => 'Name',
     'email' => 'Email',
-    'join_at' => 'Bergabung',
+    'join_at' => 'Joined',
     'slug' => 'Slug',
-    'action' => 'Aksi',
+    'action' => 'Action',
     'thumbnails' => 'Thumbnails',
-    'created_at' => 'Dibuat',
-    'price' => 'Harga',
-    'description' => 'Deskripsi',
+    'created_at' => 'Created',
+    'price' => 'Price',
+    'description' => 'Description',
 
     // Category
-    'category_name' => 'Nama Kategori',
+    'category_name' => 'Category Name',
 
     // Product
-    'product_name' => 'Nama Produk',
-    'weight'        => 'Berat',
+    'product_name' => 'Product Name',
+    'weight'        => 'Weight',
 
     // Order
     'order_invoice' => 'Invoice',
-    'order_customer' => 'Nama Pemesan',
-    'order_total' => 'Total Pembayaran',
-    'order_status' => 'Status Pesanan',
+    'order_customer' => 'Customer Name',
+    'order_total' => 'Total Payment',
+    'order_status' => 'Order Status',
 ];

@@ -32,7 +32,7 @@
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="checkout__form__input">
                                     <p>Phone Number <span>*</span></p>
-                                    <input type="text" name="phone_number"  required>
+                                    <input type="text" name="phone_number" required>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
@@ -107,10 +107,10 @@
                                     </li>
                                     <li>Shipping Cost <span id="text-cost">Rp 0</span></li>
                                     <li>Total <span id="total">{{ rupiah($data['carts']->sum('total_price_per_product')) }}</span></li>
-                                    <input type="hidden" name="shipping_cost" id="shipping_cost" >
+                                    <input type="hidden" name="shipping_cost" id="shipping_cost">
                                 </ul>
                             </div>
-                            <button type="submit" class="site-btn">Place oder</button>
+                            <button type="submit" class="site-btn">Place order</button>
                         </div>
                     </div>
                 </div>
@@ -147,9 +147,9 @@
                         $('#shipping_method').append(
                             'option value="" selected disabled>-- Select Shipment Service --</option>');
                         $.each(response[0].costs, function(key, cost) {
-                            $('select[name="shipping_method"]').append('<option value="' + cost.service + ' Rp.' + cost.cost[0].value + ' Estimasi ' +
+                            $('select[name="shipping_method"]').append('<option value="' + cost.service + ' Rp.' + cost.cost[0].value + ' Estimated ' +
                                 cost.cost[0].etd +
-                                '" data-ongkir="'+cost.cost[0].value+'">' + cost.service + ' Rp.' + cost.cost[0].value + ' Estimasi ' +
+                                '" data-ongkir="'+cost.cost[0].value+'">' + cost.service + ' Rp.' + cost.cost[0].value + ' Estimated ' +
                                 cost.cost[0].etd +
                                 '</option>');
                             if (key == 0) {
@@ -191,20 +191,14 @@
             });
         });
 
-        $('#city_id').on('change', function() {
-            checkCost();
-        });
-        $('#courier').on('change', function() {
-            checkCost();
-        });
+        $('#city_id, #courier').on('change', checkCost);
 
-        $('#shipping_method').on('change',function(){
+        $('#shipping_method').on('change', function() {
             var ongkir = parseInt($('#shipping_method option:selected').data('ongkir'));
             countCost(ongkir);
-        })
+        });
 
-        function countCost(ongkir)
-        {
+        function countCost(ongkir) {
             var subtotal = `{{ $data['carts']->sum('total_price_per_product') }}`;
             var total = parseInt(subtotal) + ongkir;
             $('#text-cost').text(rupiah(ongkir));

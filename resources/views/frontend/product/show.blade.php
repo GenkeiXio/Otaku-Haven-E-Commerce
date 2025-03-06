@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="product__details__text">
-                        <h3>{{ $data['product']->name }} <span>Kategori: {{ $data['product']->Category->name }}</span></h3>
+                        <h3>{{ $data['product']->name }} <span>Category: {{ $data['product']->Category->name }}</span></h3>
                         <div class="rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -45,20 +45,20 @@
                         @csrf
                         <div class="product__details__button">
                             <div class="quantity">
-                                <span>Jumlah:</span>
+                                <span>Quantity:</span>
                                 <div class="pro-qty">
                                     <input type="text" name="cart_qty" value="1">
                                 </div>
                                 <input type="hidden" name="cart_product_id" value="{{ $data['product']->id }}">
                             </div>
-                            <button type="submit" class="cart-btn"><span class="icon_bag_alt"></span> Tambah Ke Keranjang</button>
+                            <button type="submit" class="cart-btn"><span class="icon_bag_alt"></span> Add to Cart</button>
                         </div>
                         <div class="product__details__widget">
                         </form>
                             <ul>
                                 <li>
-                                    <span>Berat : </span>
-                                    <p>{{ $data['product']->weight }} Gram</p>
+                                    <span>Weight: </span>
+                                    <p>{{ $data['product']->weight }} Grams</p>
                                 </li>
                             </ul>
                         </div>
@@ -68,12 +68,12 @@
                     <div class="product__details__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Deskripsi Produk</a>
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Product Description</a>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <h6>Deskripsi Produk</h6>
+                                <h6>Product Description</h6>
                                 {!! $data['product']->description !!}
                             </div>
                         </div>
@@ -83,7 +83,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="related__title">
-                        <h5>Produk Lainnya</h5>
+                        <h5>Other Products</h5>
                     </div>
                 </div>
                @foreach ($data['product_related'] as $product_related)

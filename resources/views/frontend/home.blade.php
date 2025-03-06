@@ -8,9 +8,8 @@
                     <div class="categories__item categories__large__item set-bg"
                         data-setbg="{{ asset('me') }}/img/goku.png">
                         <div class="categories__text">
-                            <p>Beragam Merchandise Anime Mulai Dari Tshirt, Hoddie, Action Figure Semuanya Tersedia Di Anime
-                                Store.</p>
-                            <a href="#">Jelajahi Sekarang</a>
+                            <p>Various Anime Merchandise Starting From T-shirts, Hoodies, Action Figures, All Available at Anime Store.</p>
+                            <a href="#">Explore Now</a>
                         </div>
                     </div>
                 </div>
@@ -22,8 +21,8 @@
                                     data-setbg="{{ asset('storage/' . $category->thumbnails) }}">
                                     <div class="categories__text">
                                         <h4>{{ $category->name }}</h4>
-                                        <p>{{ $category->Products()->count() }} item</p>
-                                        <a href="#">Jelajahi</a>
+                                        <p>{{ $category->Products()->count() }} items</p>
+                                        <a href="#">Explore</a>
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +40,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="section-title">
-                        <h4>New product</h4>
+                        <h4>New Product</h4>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8">
