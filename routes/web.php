@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\TransacationController;
 use App\Http\Controllers\Midtrans\MidtransController;
 use App\Http\Controllers\Rajaongkir\RajaongkirController;
 use App\Http\Controllers\Setting\WebconfigController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Contracts\Role;
@@ -23,11 +24,6 @@ use Spatie\Permission\Contracts\Role;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
 Route::post('payments/midtrans-notification', [MidtransController::class, 'receive']);
@@ -130,13 +126,35 @@ Route::get('/product', [FrontendProductController::class,'index'])->name('produc
 
 Route::get('/search',[FrontendProductController::class,'search'])->name('product.search');
 
-// Ruote Category
+// Route Category
 Route::get('/category', [FrontendCategoryController::class,'index'])->name('category.index');
 Route::get('/category/{slug}', [FrontendCategoryController::class,'show'])->name('category.show');
 
 
 
 Route::get('/product/{categoriSlug}/{productSlug}',[FrontendProductController::class,'show'])->name('product.show');
+
+
+// Route Policies
+Route::get('/policies/faq', function () {
+    return view('frontend.policies.faq');
+})->name('frontend.policies.faq');
+
+Route::get('/policies/privacy', function () {
+    return view('frontend.policies.privacy');
+})->name('frontend.policies.privacy');
+
+Route::get('/policies/terms', function () {
+    return view('frontend.policies.terms');
+})->name('frontend.policies.terms');
+
+// Route Contact Page
+Route::get('/contact', function () {
+    return view('frontend.contact');
+})->name('frontend.contact');
+
+// Route for Contact Form Submission
+Route::post('/contact/send', [ContactController::class, 'sendContactForm'])->name('contact.send');
 
 
 require __DIR__ . '/auth.php';
