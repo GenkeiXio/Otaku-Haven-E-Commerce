@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12">
-                    <p>Search Results: {{ $_GET['q'] }} ({{ $data['product']->count() }} Results)</p>
+                <p>Search Results: {{ request()->query('q') }} ({{ $data['product']->count() }} Results)</p>
                     <div class="row">
                         @foreach ($data['product'] as $product)
                         <div class="col-lg-3 col-md-4">
