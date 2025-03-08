@@ -10,7 +10,7 @@
 
                     <x-forms.input name="slug" id="slug" :label="__('field.slug')" :isRequired="true" readonly value="{{ $data['category']->slug }}"/>
                     <x-forms.input type="file" name="thumbnails" id="thumbnails" :label="__('field.thumbnails')" />
-                    <p>Kosongkan jika tidak akan mengubah thumbnails.</p>
+                    <p>Leave empty if you do not want to change the thumbnails.</p>
 
                     <div class="text-right">
                         <a href="{{ Route('master.category.index') }}" class="btn btn-secondary " href="#">{{ __('button.cancel') }}</a>

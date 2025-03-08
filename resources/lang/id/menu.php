@@ -1,23 +1,23 @@
 <?php
 return [
     'dashboard'         => 'Dashboard',
-    'trash'             => 'Tempat Sampah',
-    'category'          => 'Kategori',
-    'product'           => 'Produk',
-    'customer'          => 'Pelanggan',
+    'trash'             => 'Trash',
+    'category'          => 'Category',
+    'product'           => 'Product',
+    'customer'          => 'Customer',
 
     // Order
-    'order'             => 'Pesanan',
-    'order_all'         => 'Semua Pesanan',
-    'order_pending'     => 'Pesanan Pending',
-    'order_process'     => 'Pesanan Dikemas',
-    'order_shipped'     => 'Pesanan Dikirim',
-    'order_completed'   => 'Pesanan Selesai',
-    'order_canceled'   => 'Pesanan Dibatalkan',
+    'order'             => 'Order',
+    'order_all'         => 'All Orders',
+    'order_pending'     => 'Pending Orders',
+    'order_process'     => 'Orders Being Packed',
+    'order_shipped'     => 'Orders Shipped',
+    'order_completed'   => 'Completed Orders',
+    'order_canceled'    => 'Canceled Orders',
 
     // Setting
 
-    'setting'           => 'Pengaturan',
-    'setting_address'   => 'Alamat Pengiriman',
-    'setting_web'       => 'Pengaturan Aplikasi',
+    'setting'           => 'Settings',
+    'setting_address'   => 'Shipping Address',
+    'setting_web'       => 'Application Settings',
 ];

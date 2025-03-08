@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-5">
             <div class="mb-2">
-                <h3>Atur Ulang Sandi</h3>
+                <h3>Reset Password</h3>
             </div>
             <x-auth-session-status class="mb-4" :status="session('status')" />
             <form method="POST" action="{{ route('password.update') }}">
@@ -32,7 +32,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="site-btn w-100 rounded-0 mb-3">Kirim</button>
+                <button type="submit" class="site-btn w-100 rounded-0 mb-3">Submit</button>
             </form>
         </div>
     </div>

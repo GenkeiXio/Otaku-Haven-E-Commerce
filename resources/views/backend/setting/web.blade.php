@@ -53,7 +53,7 @@
 
         <div class="col">
             <div class="text-end">
-                <button type="submit" class="btn btn-primary me-0" href="#">Simpan</button>
+                <button type="submit" class="btn btn-primary me-0" href="#">Save</button>
             </div>
         </div>
     </div>

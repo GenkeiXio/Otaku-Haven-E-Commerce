@@ -27,9 +27,8 @@ class OrderCart
         $month_name = json_decode(json_encode($order->pluck('month_name')), true);
         $total = json_decode(json_encode($order->pluck('total')), true);
        return  $this->chart->lineChart()
-            ->setTitle('Penjualan Tahun Ini')
-            ->addData('Penjualan',$total)
+            ->setTitle('Sales This Year')
+            ->addData('Sales',$total)
             ->setXAxis($month_name);
-            
     }
 }

@@ -24,8 +24,8 @@
                         <div class="categories__item set-bg" data-setbg="{{ asset('storage/' . $category->thumbnails) }}">
                             <div class="categories__text">
                                 <h4>{{ $category->name }}</h4>
-                                <p>{{ $category->Products()->count() }} item</p>
-                                <a href="{{ route('category.show',$category->slug) }}">Jelajahi</a>
+                                <p>{{ $category->Products()->count() }} items</p>
+                                <a href="{{ route('category.show',$category->slug) }}">Explore</a>
                             </div>
                         </div>
                     </div>
