@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\Feature\OrderController;
 use App\Http\Controllers\Backend\Master\CategoryController;
 use App\Http\Controllers\Backend\Master\ProductController;
 use App\Http\Controllers\Frontend\AccountController;
+use App\Http\Controllers\Frontend\AddressController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\Frontend\CheckoutController;
@@ -107,10 +108,20 @@ Route::middleware('auth','role:user')->group(function(){
         Route::post('/process',[CheckoutController::class,'process'])->name('process');
     });
 
-    Route::prefix('account')->name('account.')->group(function(){
-        Route::get('/',[AccountController::class,'index'])->name('index');
-    });
 
+    Route::get('/account', [AccountController::class, 'index'])->name('frontend.account.index');
+    Route::get('/account/{section}', [AccountController::class, 'loadSection'])->name('frontend.account.section');
+        
+    // Add this route to handle profile updates
+    Route::put('/account/update', [AccountController::class, 'updateProfile'])->name('frontend.account.update');
+
+    // Add this route to handle address
+    Route::get('/account/address', [AddressController::class, 'index'])->name('frontend.account.address');
+    Route::post('/account/address', [AddressController::class, 'store'])->name('address.store');
+    Route::get('/account/address/{id}/edit', [AddressController::class, 'edit'])->name('address.edit');
+    Route::post('/account/address/{id}', [AddressController::class, 'update'])->name('address.update');
+    Route::post('/account/address/{id}/set-default', [AddressController::class, 'setDefault'])->name('address.set_default');
+    Route::delete('/account/address/{id}', [AddressController::class, 'destroy'])->name('address.destroy');
 
 });
 

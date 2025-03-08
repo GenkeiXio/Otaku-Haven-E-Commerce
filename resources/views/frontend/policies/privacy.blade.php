@@ -3,6 +3,20 @@
 @section('title', 'Privacy Policies')
 
 @section('content')
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+                        <a href="{{ url('/') }}"><i class="fa fa-home"></i> Home</a>
+                        <span>Privacy Policies</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <section id="privacy-policy-section">
         <div class="privacy-container">
             <h4>Privacy Policy</h4>

@@ -3,6 +3,20 @@
 @section('title', 'FAQ - Frequently Asked Questions')
 
 @section('content')
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+                        <a href="{{ url('/') }}"><i class="fa fa-home"></i> Home</a>
+                        <span>FAQ - Frequently Asked Questions</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="faq-wrapper">
     
     <section id="faq-header-text">

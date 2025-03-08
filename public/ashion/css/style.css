@@ -1077,7 +1077,7 @@ ol {
 
 .categories__text h4 {
 	color: #111111;
-	font-weight: 700;
+	font-weight: 1000;
 }
 
 .categories__text p {
@@ -2295,7 +2295,7 @@ ol {
 }
 
 .cart__total__procced ul li span {
-	color: #ca1515;
+	color: #db4444;
 	float: right;
 }
 

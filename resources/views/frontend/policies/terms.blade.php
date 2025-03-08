@@ -3,6 +3,20 @@
 @section('title', 'Terms of Use')
 
 @section('content')
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+                        <a href="{{ url('/') }}"><i class="fa fa-home"></i> Home</a>
+                        <span>Terms of Use</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <section id="terms-of-use-section">
         <div class="terms-container">
             <h4>Terms of Use</h4>

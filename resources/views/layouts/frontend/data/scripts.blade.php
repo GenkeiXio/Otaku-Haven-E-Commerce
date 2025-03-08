@@ -42,7 +42,7 @@
             gravity: "top", // `top` or `bottom`
             position: "right", // `left`, `center` or `right`
             style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                background: "linear-gradient(to right, #db4444, #e07575)",
             },
         }).showToast();
     </script>

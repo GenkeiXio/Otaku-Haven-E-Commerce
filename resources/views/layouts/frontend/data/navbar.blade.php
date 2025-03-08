@@ -35,7 +35,7 @@
                          <li class="{{ request()->is('category*') ? 'active' : '' }}"><a href="#"><i class="fa fa-angle-down"></i> {{ auth()->user()->name }}</a>
                            <ul class="dropdown">
                                <li><a href="{{ route('transaction.index') }}">Shopping History</a></li>
-                               <li><a href="{{ route('account.index') }}">Account Settings</a></li>
+                               <li><a href="{{ route('frontend.account.index') }}">Account Settings</a></li>
                                <form method="POST" action="{{ route('logout') }}">
                                    @csrf
                                    <li>
