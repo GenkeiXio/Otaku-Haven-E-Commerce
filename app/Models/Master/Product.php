@@ -11,7 +11,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $appends = ['thumbnails_path','price_ph','total_sold'];
+    protected $appends = ['thumbnails_path','price_₱','total_sold'];
 
     public function Category()
     {
@@ -28,7 +28,7 @@ class Product extends Model
         return asset('storage/' . $this->thumbnails);
     }
 
-    public function getPriceRupiahAttribute()
+    public function getPricerupiahAttribute()
     {
         return "₱ " . number_format($this->price,0,',','.');
     }
