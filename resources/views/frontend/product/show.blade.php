@@ -80,6 +80,149 @@
                     </div>
                 </div>
             </div>
+            </title>
+            <!-- Recent Feedbacks Section -->
+            <script src="https://cdn.tailwindcss.com">
+            </script>
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+            <style>
+            .shadow-custom {
+                box-shadow: 0 4px 6px -1px rgba(219, 68, 68, 0.1), 0 2px 4px -1px rgba(219, 68, 68, 0.06);
+            }
+            </style>
+            </head>
+            <body class="bg-gray-100 p-6">
+            <div class="container mx-auto">
+            <div class="flex flex-col lg:flex-row gap-6">
+                <div class="w-full lg:w-1/2">
+                <h2 class="text-2xl font-bold mb-4">
+                Recent Feedbacks
+                </h2>
+                <div class="bg-white p-4 rounded-lg shadow-custom mb-4">
+                <div class="flex items-center">
+                <img alt="Profile picture of a man with a beard" class="w-12 h-12 rounded-full mr-4" height="60" src="https://storage.googleapis.com/a1aa/image/o_isWhgyb2jvaO90Uj6DVw8ghzd2VrvuUaGBBbCJQFw.jpg" width="60"/>
+                <div class="flex-1">
+                    <h3 class="font-bold">
+                    Robert Karmazov
+                    </h3>
+                    <p class="text-gray-600 text-sm">
+                    Auctor magnis proin vitae laoreet ultrices ultricies diam. Sed duis mattis cras lacus donec. Aliquam
+                    </p>
+                </div>
+                <div class="text-yellow-500">
+                    <i class="fas fa-star">
+                    </i>
+                    <i class="fas fa-star">
+                    </i>
+                    <i class="fas fa-star">
+                    </i>
+                    <i class="fas fa-star">
+                    </i>
+                    <i class="fas fa-star-half-alt">
+                    </i>
+                </div>
+                </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-custom mb-4">
+                <div class="flex items-center">
+                <img alt="Profile picture of a woman with blonde hair" class="w-12 h-12 rounded-full mr-4" height="60" src="https://storage.googleapis.com/a1aa/image/CtCAXPaekv59q0So_OZiYJOkhCnaezHSmjrCJeuIFjA.jpg" width="60"/>
+                <div class="flex-1">
+                    <h3 class="font-bold">
+                    Robert Karmazov
+                    </h3>
+                    <p class="text-gray-600 text-sm">
+                    Auctor magnis proin vitae laoreet ultrices ultricies diam. Sed duis mattis cras lacus donec. Aliquam
+                    </p>
+                </div>
+                <div class="text-yellow-500">
+                    <i class="fas fa-star">
+                    </i>
+                    <i class="fas fa-star">
+                    </i>
+                    <i class="fas fa-star">
+                    </i>
+                    <i class="fas fa-star">
+                    </i>
+                    <i class="fas fa-star-half-alt">
+                    </i>
+                </div>
+                </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-custom mb-4">
+                <div class="flex items-center">
+                <img alt="Profile picture of a man with short hair" class="w-12 h-12 rounded-full mr-4" height="60" src="https://storage.googleapis.com/a1aa/image/RLCxI8Wfol2E3oaSoFpPAhkq4UHMd-xoJdQB_f4b8oU.jpg" width="60"/>
+                <div class="flex-1">
+                    <h3 class="font-bold">
+                    Robert Karmazov
+                    </h3>
+                    <p class="text-gray-600 text-sm">
+                    Auctor magnis proin vitae laoreet ultrices ultricies diam. Sed duis mattis cras lacus donec. Aliquam
+                    </p>
+                </div>
+                <div class="text-yellow-500">
+                    <i class="fas fa-star">
+                    </i>
+                    <i class="fas fa-star">
+                    </i>
+                    <i class="fas fa-star">
+                    </i>
+                    <i class="fas fa-star">
+                    </i>
+                    <i class="fas fa-star-half-alt">
+                    </i>
+                </div>
+                </div>
+                </div>
+                </div>
+                <!-- Add a Review Section -->
+                <div class="w-full lg:w-1/2 shadow-custom">
+                <h2 class="text-2xl font-bold mb-4">
+                Add a Review
+                </h2>
+                <form class="bg-white p-6 rounded-lg shadow-md">
+                <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2">
+                    Add Your Rating *
+                </label>
+                <div class="text-yellow-500">
+                    <i class="fas fa-star">
+                    </i>
+                    <i class="fas fa-star">
+                    </i>
+                    <i class="fas fa-star">
+                    </i>
+                    <i class="fas fa-star">
+                    </i>
+                    <i class="fas fa-star">
+                    </i>
+                </div>
+                </div>
+                <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="name">
+                    Name *
+                </label>
+                <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500" id="name" placeholder="John Doe" type="text"/>
+                </div>
+                <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="email">
+                    Email *
+                </label>
+                <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500" id="email" placeholder="JohnDoe@gmail.com" type="email"/>
+                </div>
+                <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="review">
+                    Write Your Review *
+                </label>
+                <textarea class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500" id="review" placeholder="Write here..."></textarea>
+                </div>
+                <button class="w-full bg-[#db4444] text-white font-bold py-2 px-4 rounded-lg hover:bg-red-600" type="submit">
+                Submit
+                </button>
+                </form>
+                </div>
+            </div>
+            </div>
+            </body>
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="related__title">

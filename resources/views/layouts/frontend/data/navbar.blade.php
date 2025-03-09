@@ -3,7 +3,8 @@
 <div class="offcanvas-menu-wrapper">
     <div class="offcanvas__close">+</div>
     <ul class="offcanvas__widget">
-        <li><span class="icon_search search-switch"></span></li>
+        <li><input type="text" class="search-bar" placeholder="Search..."></li>
+        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
         <li><a href="#"><span class="icon_bag_alt"></span>
             <div class="tip">2</div>
         </a></li>
@@ -21,7 +22,7 @@
         <div class="row">
             <div class="col-xl-3 col-lg-2">
                 <div class="">
-                    <h1 class="title-logo">{{ $app_name }}</h1>
+                    <h1 class="title-logo" style="font-family: Arial, sans-serif;">{{ $app_name }}</h1>
                 </div>
             </div>
             <div class="col-xl-6 col-lg-7 text-center">
@@ -32,22 +33,22 @@
                         <li class="{{ request()->is('category*') ? 'active' : '' }}"><a href="{{ route('category.index') }}">Category</a></li>
                         <li><a href="{{ route('frontend.contact') }}">Contact</a></li>
                         @auth
-                         <li class="{{ request()->is('category*') ? 'active' : '' }}"><a href="#"><i class="fa fa-angle-down"></i> {{ auth()->user()->name }}</a>
-                           <ul class="dropdown">
-                               <li><a href="{{ route('transaction.index') }}">Shopping History</a></li>
-                               <li><a href="{{ route('frontend.account.index') }}">Account Settings</a></li>
-                               <form method="POST" action="{{ route('logout') }}">
-                                   @csrf
-                                   <li>
-                                       <a href="{{ route('logout')  }}" onclick="event.preventDefault();
-                                       this.closest('form').submit();" > Logout
-                                   </a>
-                                   </li>
-                               </form>
-                           </ul>
-                       </li>
-                            @else
-                            <li><a href="{{ route('login') }}">Login</a></li>
+                        <li class="{{ request()->is('category*') ? 'active' : '' }}"><a href="#"><i class="fa fa-angle-down"></i> {{ auth()->user()->name }}</a>
+                            <ul class="dropdown">
+                                <li><a href="{{ route('transaction.index') }}">Shopping History</a></li>
+                                <li><a href="{{ route('frontend.account.index') }}">Account Settings</a></li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <li>
+                                        <a href="{{ route('logout')  }}" onclick="event.preventDefault();
+                                        this.closest('form').submit();" > Logout
+                                    </a>
+                                    </li>
+                                </form>
+                            </ul>
+                        </li>
+                        @else
+                        <li><a href="{{ route('login') }}">Login</a></li>
                         @endauth
                     </ul>
                 </nav>
@@ -55,7 +56,8 @@
             <div class="col-lg-3">
                 <div class="header__right">
                     <ul class="header__right__widget">
-                        <li><span class="icon_search search-switch"></span></li>
+                        <li><input type="text" class="search-bar" placeholder="Search..."></li>
+                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                         <li><a href="{{ route('cart.index') }}"><span class="icon_bag_alt"></span>
                             <div class="tip">
                                 {{ $totalCart ?? 0 }}
