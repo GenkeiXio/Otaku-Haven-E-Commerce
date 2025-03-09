@@ -3,9 +3,9 @@
 <div class="offcanvas-menu-wrapper">
     <div class="offcanvas__close">+</div>
     <ul class="offcanvas__widget">
-        <li><input type="text" class="search-bar" placeholder="Search..."></li>
-        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-        <li><a href="#"><span class="icon_bag_alt"></span>
+        <li><span class="icon_search search-switch"></span></li>
+        <li><a href="{{ route('frontend.account.section', 'wishlist') }}"><span class="icon_heart_alt"></span></a></li>
+        <li><a href="{{ route('cart.index') }}"><span class="icon_bag_alt"></span>
             <div class="tip">2</div>
         </a></li>
     </ul>
@@ -22,7 +22,9 @@
         <div class="row">
             <div class="col-xl-3 col-lg-2">
                 <div class="">
-                    <h1 class="title-logo" style="font-family: Arial, sans-serif;">{{ $app_name }}</h1>
+                    <h2 class="title-logo" style="font-family: Montserrat, sans-serif; font-weight: bold; color: #111111; padding: 30px 20px; font-size: 26px; text-transform: uppercase;">
+                        {{ $app_name }}
+                    </h2>
                 </div>
             </div>
             <div class="col-xl-6 col-lg-7 text-center">
@@ -56,8 +58,8 @@
             <div class="col-lg-3">
                 <div class="header__right">
                     <ul class="header__right__widget">
-                        <li><input type="text" class="search-bar" placeholder="Search..."></li>
-                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                        <li><span class="icon_search search-switch"></span></li>
+                        <li><a href="{{ route('frontend.account.section', 'wishlist') }}"><span class="icon_heart_alt"></span></a></li>
                         <li><a href="{{ route('cart.index') }}"><span class="icon_bag_alt"></span>
                             <div class="tip">
                                 {{ $totalCart ?? 0 }}

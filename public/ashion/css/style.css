@@ -1063,16 +1063,19 @@ ol {
 }
 
 .categories__text h1 {
-	font-family: "Cookie", cursive;
+	font-family: "Cookie";
 	color: #111111;
 	margin-bottom: 5px;
 }
 
-
 .title-logo {
-	font-family: "Cookie", cursive;
-	color: #111111;
-	margin-bottom: 5px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    font-size: 32px; /* Adjust this value to make it smaller */
+    color: #111111;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .categories__text h4 {

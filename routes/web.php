@@ -147,22 +147,14 @@ Route::get('/product/{categoriSlug}/{productSlug}',[FrontendProductController::c
 
 
 // Route Policies
-Route::get('/policies/faq', function () {
-    return view('frontend.policies.faq');
-})->name('frontend.policies.faq');
+Route::get('/policies/faq', function () { return view('frontend.policies.faq'); })->name('frontend.policies.faq');
 
-Route::get('/policies/privacy', function () {
-    return view('frontend.policies.privacy');
-})->name('frontend.policies.privacy');
+Route::get('/policies/privacy', function () { return view('frontend.policies.privacy'); })->name('frontend.policies.privacy');
 
-Route::get('/policies/terms', function () {
-    return view('frontend.policies.terms');
-})->name('frontend.policies.terms');
+Route::get('/policies/terms', function () { return view('frontend.policies.terms'); })->name('frontend.policies.terms');
 
 // Route Contact Page
-Route::get('/contact', function () {
-    return view('frontend.contact');
-})->name('frontend.contact');
+Route::get('/contact', function () { return view('frontend.contact'); })->name('frontend.contact');
 
 // Route for Contact Form Submission
 Route::post('/contact/send', [ContactController::class, 'sendContactForm'])->name('contact.send');
