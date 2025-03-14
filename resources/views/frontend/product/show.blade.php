@@ -41,7 +41,7 @@
                             <span>( 138 reviews )</span>
                         </div>
                         <form action="{{ route('cart.store') }}" method="POST">
-                        <div class="product__details__price">{{ $data['product']->price }} <span></div>
+                        <div class="product__details__price">{{$data['product']->price }} <span></div>
                         @csrf
                         <div class="product__details__button">
                             <div class="quantity">

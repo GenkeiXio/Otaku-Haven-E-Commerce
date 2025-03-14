@@ -6,7 +6,7 @@
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="2500">
             <div class="carousel-inner">
                 <!-- Genshin Impact Banner Slide -->
-                <div class="carousel-item active">
+                <div class="carousel-item selected">
                     <div class="genshin-banner">
                         <div class="text-content">
                             <h6>
@@ -73,7 +73,7 @@
 
             <!-- Carousel Indicators -->
             <ol class="carousel-indicators">
-                <li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleControls" data-slide-to="0" class="selected"></li>
                 <li data-target="#carouselExampleControls" data-slide-to="1" ></li>
                 <li data-target="#carouselExampleControls" data-slide-to="2" ></li>
                 <li data-target="#carouselExampleControls" data-slide-to="3" ></li>
@@ -338,6 +338,28 @@
     </div>
     <!-- Services Section End -->
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    let items = document.querySelectorAll(".carousel-item");
+    let indicators = document.querySelectorAll(".carousel-indicators li");
+
+    // Ensure Bootstrap 5 still recognizes the selected slide
+    items[0].classList.add("active"); // Bootstrap requirement
+    indicators[0].classList.add("active");
+
+    // Listen for slide events and switch class
+    let carousel = document.querySelector("#carouselExampleControls");
+    carousel.addEventListener("slide.bs.carousel", function (event) {
+        items.forEach(item => item.classList.remove("selected"));
+        indicators.forEach(ind => ind.classList.remove("selected"));
+
+        items[event.to].classList.add("selected");
+        indicators[event.to].classList.add("selected");
+    });
+});
+
+    </script>
+
 @endsection
 
 <style>
@@ -358,7 +380,7 @@
     height: 5px; 
   }
 
-  .carousel-indicators .active {
+  .carousel-indicators .selected {
     background-color: #db4444 !important;
   }
 

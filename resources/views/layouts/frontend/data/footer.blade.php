@@ -26,7 +26,7 @@
                 <p><a href="{{ route('frontend.policies.privacy') }}">Privacy Policy</a></p>
                 <p><a href="{{ route('frontend.policies.terms') }}">Terms of Use</a></p>
                 <p><a href="{{ route('frontend.policies.faq') }}">FAQ</a></p>
-                <p><a href="{{ route('frontend.contact') }}">Contact</a></p>
+                <p><a href="{{ route('category.index') }}" class="{{ request()->is('category*') ? 'active' : '' }}">Category</a></li>
             </div>
 
             <!-- Download App -->
