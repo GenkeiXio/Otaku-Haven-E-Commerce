@@ -143,6 +143,10 @@ Route::get('/product', [FrontendProductController::class,'index'])->name('produc
 
 Route::get('/search',[FrontendProductController::class,'search'])->name('product.search');
 
+// Route for Product List, Review, and Description Pages
+Route::view('/review', 'review');
+Route::view('/product-description', 'product_description');
+
 // Route Category
 Route::get('/category', [FrontendCategoryController::class,'index'])->name('category.index');
 Route::get('/category/{slug}', [FrontendCategoryController::class,'show'])->name('category.show');
@@ -170,5 +174,8 @@ Route::post('/product/{id}/stock', [ProductController::class, 'updateStock'])->n
 
 // Route Event Page
 Route::get('/event/index', function () { return view('frontend.event.index'); })->name('frontend.event.index');
+
+// Route Reviews Page
+Route::get('/reviews/review', function () { return view('frontend.reviews.review'); })->name('frontend.reviews.review');
 
 require __DIR__ . '/auth.php';

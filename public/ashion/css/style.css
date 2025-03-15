@@ -3735,4 +3735,27 @@ ol {
 		width: 100%;
 		font-size: 24px;
 	}
+
+	.stars {
+		font-size: 30px;
+		display: flex;
+		gap: 5px;
+		cursor: pointer;
+	}
+	
+	.star {
+		transition: color 0.3s ease;
+		color: #ccc; /* Default color */
+	}
+	
+	.star.one { color: red; }
+	.star.two { color: orange; }
+	.star.three { color: yellow; }
+	.star.four { color: gold; }
+	.star.five { color: green; }
+	
+	.review {
+		background-color: #f8f9fa;
+	}
+	
 }
