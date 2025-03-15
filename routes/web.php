@@ -106,6 +106,7 @@ Route::middleware('auth','role:user')->group(function(){
     Route::prefix('checkout')->name('checkout.')->group(function(){
         Route::get('/',[CheckoutController::class,'index'])->name('index');
         Route::post('/process',[CheckoutController::class,'process'])->name('process');
+        Route::post('/shipping/cost', [ShippingController::class, 'getShippingCost'])->name('shipping.cost');
     });
 
 

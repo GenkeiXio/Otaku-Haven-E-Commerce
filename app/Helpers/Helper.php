@@ -1,8 +1,8 @@
 <?php 
 
-function rupiah($number)
+function formatPeso($number)
 {
-    return "₱ " . number_format($number,0,',','.');
+    return "₱ " . number_format($number, 0, ',', '.');
 }
 
 function tanggal($tanggal){

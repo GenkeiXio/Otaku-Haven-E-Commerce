@@ -41,8 +41,7 @@
                                     <select name="province_id" id="province_id" class="select-2" required>
                                         <option value="" selected disabled>-- Select Province --</option>
                                         @foreach ($data['provinces'] as $province)
-                                            <option value="{{ $province['province'] }}" data-id="{{ $province['province_id'] }}">{{ $province['province'] }}
-                                            </option>
+                                            <option value="{{ $province->id }}">{{ $province->province_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -65,9 +64,9 @@
                                 <div class="checkout__form__input">
                                     <p>Courier <span>*</span></p>
                                     <select name="courier" id="courier">
-                                        <option value="jne" selected>JNE</option>
-                                        <option value="tiki">TIKI</option>
-                                        <option value="pos">POS INDONESIA</option>
+                                        <option value="jne" selected>J&T</option>
+                                        <option value="tiki">Ninja</option>
+                                        <option value="pos">Flash Express</option>
                                     </select>
                                 </div>
                             </div>
@@ -91,7 +90,7 @@
                                     </li>
                                     @foreach ($data['carts'] as $cart)
                                         <li>{{ $loop->iteration }}. {{ $cart->Product->name }} x
-                                            {{ $cart->qty }}<span>{{ ₱($cart->total_price_per_product) }}</span>
+                                            {{ $cart->qty }}<span>{{ formatPeso($cart->total_price_per_product) }}</span>
                                         </li>
                                     @endforeach
                                     <li>
@@ -103,10 +102,10 @@
                             </div>
                             <div class="checkout__order__total">
                                 <ul>
-                                    <li>Subtotal <span>{{ ₱($data['carts']->sum('total_price_per_product')) }}</span>
+                                    <li>Subtotal <span>{{ formatPeso($data['carts']->sum('total_price_per_product')) }}</span>
                                     </li>
                                     <li>Shipping Cost <span id="text-cost">₱ 0</span></li>
-                                    <li>Total <span id="total">{{ ₱($data['carts']->sum('total_price_per_product')) }}</span></li>
+                                    <li>Total <span id="total">{{ formatPeso($data['carts']->sum('total_price_per_product')) }}</span></li>
                                     <input type="hidden" name="shipping_cost" id="shipping_cost">
                                 </ul>
                             </div>
@@ -127,7 +126,7 @@
             var weight = "{{ $data['carts']->sum('total_weight_per_product') }}";
             var courier = $('#courier option:selected').val();
 
-            let _url = `/rajaongkir/cost`;
+            let _url = `/shipping/cost`;
             let _token = $('meta[name="csrf-token"]').attr('content');
 
             $.ajax({
@@ -143,22 +142,11 @@
                 dataType: "json",
                 success: function(response) {
                     if (response) {
-                        $('#shipping_method').empty();
-                        $('#shipping_method').append(
-                            'option value="" selected disabled>-- Select Shipment Service --</option>');
-                        $.each(response[0].costs, function(key, cost) {
-                            $('select[name="shipping_method"]').append('<option value="' + cost.service + ' Rp.' + cost.cost[0].value + ' Estimated ' +
-                                cost.cost[0].etd +
-                                '" data-ongkir="'+cost.cost[0].value+'">' + cost.service + ' Rp.' + cost.cost[0].value + ' Estimated ' +
-                                cost.cost[0].etd +
-                                '</option>');
-                            if (key == 0) {
-                                countCost(cost.cost[0].value)
-                            }
+                        $('#shipping_method').empty().append('<option value="" selected disabled>-- Select Shipment Service --</option>');
+                        $.each(response, function(key, cost) {
+                            $('#shipping_method').append('<option value="' + cost.service + '" data-ongkir="' + cost.cost + '">' + cost.service + ' - ₱' + cost.cost + ' (Estimated ' + cost.etd + ' days)</option>');
+                            if (key == 0) countCost(cost.cost);
                         });
-                    } else {
-                        $('#shipping_method').append(
-                            'option value="" selected disabled>-- Select Shipment Service --</option>');
                     }
                 },
             });
@@ -166,26 +154,18 @@
 
         $('#province_id').on('change', function() {
             var provinceId = $('#province_id option:selected').data('id');
-            $('#city_id').empty();
-            $('#city_id').append('<option value="">-- Loading Data --</option>');
+            $('#city_id').empty().append('<option value="">-- Loading Data --</option>');
             $.ajax({
-                url: '/rajaongkir/province/' + provinceId,
+                url: '/shipping/cities/' + provinceId,
                 type: "GET",
                 dataType: "json",
                 success: function(data) {
                     if (data) {
-                        $('#city_id').empty();
-                        $('#city_id').removeAttr('disabled');
-                        $('select[name="city_id"]').append(
-                            'option value="" selected>-- Select City --</option>');
+                        $('#city_id').empty().removeAttr('disabled').append('<option value="" selected>-- Select City --</option>');
                         $.each(data, function(key, city) {
-                            $('select[name="city_id"]').append('<option value="' + city
-                                .city_name + '" data-id="'+city.city_id+'">' + city.type + ' ' + city.city_name +
-                                '</option>');
+                            $('#city_id').append('<option value="' + city.city_name + '" data-id="' + city.city_id + '">' + city.city_name + '</option>');
                         });
                         checkCost();
-                    } else {
-                        $('#city_id').empty();
                     }
                 }
             });
@@ -199,11 +179,11 @@
         });
 
         function countCost(ongkir) {
-            var subtotal = `{{ $data['carts']->sum('total_price_per_product') }}`;
-            var total = parseInt(subtotal) + ongkir;
-            $('#text-cost').text(₱(ongkir));
+            var subtotal = parseInt("{{ $data['carts']->sum('total_price_per_product') }}");
+            var total = subtotal + ongkir;
+            $('#text-cost').text('₱' + ongkir);
             $('#shipping_cost').val(ongkir);
-            $('#total').text(₱(total))
+            $('#total').text('₱' + total);
         }
     </script>
 @endpush
