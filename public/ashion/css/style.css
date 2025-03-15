@@ -262,16 +262,18 @@ ol {
 	cursor: pointer;
 }
 
-.search-model {
-	display: none;
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	left: 0;
-	top: 0;
-	z-index: 99999;
-	background: url('https://i.pinimg.com/1200x/79/f2/ee/79f2eeb4abe7419f56c26ef0d7e86ec9.jpg') center center;
-	background-size: cover;
+.search-model {  
+    display: none;  
+    position: fixed;  
+    width: 100%;  
+    height: 100%;  
+    left: 0;  
+    top: 0;  
+    z-index: 99999;  
+    background-image: url('../img/bg.jpg');  
+    background-size: cover;  
+    background-position: center;  
+    background-repeat: no-repeat;  
 }
 
 .search-model-form {
