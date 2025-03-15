@@ -12,15 +12,17 @@
                     <a href="{{ route('frontend.account.index') }}">Account Setting</a>
                     <span>
                         @if(request()->segment(2) === 'profile')
-                            My Profile
+                            Profile
                         @elseif(request()->segment(2) === 'address')
-                            My Address Book
+                            Address
+                        @elseif(request()->segment(2) === 'changepassword')
+                            Change Password
                         @elseif(request()->segment(2) === 'wishlist')
-                            My Wishlist
+                            Wishlist
                         @elseif(request()->segment(2) === 'returns')
-                            My Returns
+                            Returns
                         @elseif(request()->segment(2) === 'cancellations')
-                            My Cancellations
+                            Cancellations
                         @else
                             Account Setting
                         @endif
@@ -38,15 +40,16 @@
             <div class="col-md-3">
                 <h6>Manage My Account</h6>
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="{{ route('frontend.account.section', 'profile') }}">My Profile</a></li>
-                    <li class="list-group-item"><a href="{{ route('frontend.account.section', 'address') }}">My Address Book</a></li>
+                    <li class="list-group-item"><a href="{{ route('frontend.account.section', 'profile') }}">Profile</a></li>
+                    <li class="list-group-item"><a href="{{ route('frontend.account.section', 'address') }}">Address</a></li>
+                    <li class="list-group-item"><a href="{{ route('frontend.account.changepassword', 'changepassword') }}">Change Password</a></li>
                 </ul>
 
                 <h6 class="mt-4">My Orders</h6>
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="{{ route('frontend.account.section', 'wishlist') }}">My Wishlist</a></li>
-                    <li class="list-group-item"><a href="{{ route('frontend.account.section', 'returns') }}">My Returns</a></li>
-                    <li class="list-group-item"><a href="{{ route('frontend.account.section', 'cancellations') }}">My Cancellations</a></li>
+                    <li class="list-group-item"><a href="{{ route('frontend.account.section', 'wishlist') }}" class="load-section" data-target="wishlist">Wishlist</a></li>
+                    <li class="list-group-item"><a href="{{ route('frontend.account.section', 'cancellations') }}" class="load-section" data-target="cancellations">Cancelled</a></li>
+                    <li class="list-group-item"><a href="{{ route('frontend.account.section', 'returns') }}" class="load-section" data-target="returns">Return Refund</a></li>
                 </ul>
             </div>
 
@@ -87,7 +90,7 @@
         // Handle browser back/forward button
         window.addEventListener("popstate", function() {
             let path = window.location.pathname.split("/").pop();
-            if (path && ["profile", "address", "wishlist", "returns", "cancellations"].includes(path)) {
+            if (path && ["profile", "address", "changepassword", "wishlist", "returns", "cancellations"].includes(path)) {
                 fetch(`/account/section/${path}`)
                     .then(response => response.text())
                     .then(data => {

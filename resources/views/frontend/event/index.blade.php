@@ -190,7 +190,7 @@
         .event-details-title {
             margin: 0;
             font-size: 22px;
-            color: #007bff;
+            color: #db4444;
         }
         .event-details-range {
             font-size: 14px;
