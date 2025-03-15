@@ -16,6 +16,7 @@
                         <th>{{ __('field.category_name') }}</th>
                         <th>{{ __('field.thumbnails') }}</th>
                         <th>{{ __('field.price') }}</th>
+                        <th>{{ __('field.stock') }}</th>
                         <th>{{ __('text.sold') }}</th>
                         <th>{{ __('field.created_at') }}</th>
                         <th>{{ __('field.action') }}</th>
@@ -28,6 +29,7 @@
                             <td>{{ $product->category->name }}</td>
                             <td><img src="{{ $product->thumbnails_path }}" class="img-thumbnail" width="100" alt=""></td>
                             <td>{{ $product->price }}</td>
+                            <td>{{ $product->stock }}</td>
                             <td>{{ $product->total_sold }}</td>
                             <td>{{ tanggal($product->created_at) }}</td>
                             <td>

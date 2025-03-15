@@ -9,6 +9,7 @@ return [
     'thumbnails' => 'Thumbnails',
     'created_at' => 'Created',
     'price' => 'Price',
+    'stock' => 'Stock',
     'description' => 'Description',
 
     // Category

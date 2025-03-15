@@ -159,6 +159,9 @@ Route::get('/contact', function () { return view('frontend.contact'); })->name('
 // Route for Contact Form Submission
 Route::post('/contact/send', [ContactController::class, 'sendContactForm'])->name('contact.send');
 
+// Route for Stock
+Route::post('/product/{id}/stock', [ProductController::class, 'updateStock'])->name('product.updateStock');
+
 // Route Event Page
 Route::get('/event/index', function () { return view('frontend.event.index'); })->name('frontend.event.index');
 
