@@ -8,5 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class ShippingAddress extends Model
 {
     use HasFactory;
-    protected $fillable = ['city_id','province_id'];
+    
+    protected $fillable = ['user_id', 'city_id', 'province_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -12,10 +12,20 @@ class Product extends Model
     use HasFactory;
     protected $guarded = [];
     protected $appends = ['thumbnails_path','price_₱','total_sold'];
+    protected $fillable = ['name', 'category_id', 'thumbnails_path', 'price', 'stock', 'total_sold'];
 
     public function Category()
     {
         return $this->belongsTo(Category::class,'categories_id');
+    }
+    
+    public function updateStock($quantity, $action = 'subtract')
+    {
+        if ($action === 'subtract') {
+            $this->decrement('stock', $quantity);
+        } elseif ($action === 'add') {
+            $this->increment('stock', $quantity);
+        }
     }
 
     public function OrderDetails()

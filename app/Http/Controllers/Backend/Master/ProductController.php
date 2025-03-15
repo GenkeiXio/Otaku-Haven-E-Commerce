@@ -64,4 +64,13 @@ class ProductController extends Controller
         $this->product->hardDelete($id);
         return back()->with('success',__('message.harddelete'));
     }
+
+    public function updateStock(Request $request, $id)
+{
+    $product = Product::findOrFail($id);
+    $product->updateStock($request->stock, 'add');
+
+    return back()->with('success', 'Stock updated successfully!');
+}
+
 }
