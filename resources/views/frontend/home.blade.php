@@ -457,7 +457,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Close Modal After Submission
         var modal = new bootstrap.Modal(document.getElementById('reviewModal'));
-        modal.hide();
+        modal.hide(); 
     });
 });
 </script>
