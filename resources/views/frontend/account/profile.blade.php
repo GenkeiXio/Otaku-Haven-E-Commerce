@@ -22,18 +22,25 @@
                        value="{{ old('email', Auth::user()->email) }}" required>
             </div>
 
-            <h5 class="mt-4">Password Changes</h5>
             <div class="mb-3">
-                <label for="current_password" class="form-label">Current Password</label>
-                <input type="password" class="form-control" id="current_password" name="current_password">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="phone" name="phone" 
+                       value="{{ old('phone', Auth::user()->phone) }}" required>
             </div>
+
             <div class="mb-3">
-                <label for="new_password" class="form-label">New Password</label>
-                <input type="password" class="form-control" id="new_password" name="new_password">
+                <label for="gender" class="form-label">Gender</label>
+                <select class="form-control" id="gender" name="gender" required>
+                    <option value="male" {{ old('gender', Auth::user()->gender) == 'male' ? 'selected' : '' }}>Male</option>
+                    <option value="female" {{ old('gender', Auth::user()->gender) == 'female' ? 'selected' : '' }}>Female</option>
+                    <option value="other" {{ old('gender', Auth::user()->gender) == 'other' ? 'selected' : '' }}>Other</option>
+                </select>
             </div>
+
             <div class="mb-3">
-                <label for="confirm_password" class="form-label">Confirm New Password</label>
-                <input type="password" class="form-control" id="confirm_password" name="new_password_confirmation">
+                <label for="dob" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" name="dob" 
+                       value="{{ old('dob', Auth::user()->dob) }}" required>
             </div>
 
             <div class="d-flex justify-content-between">

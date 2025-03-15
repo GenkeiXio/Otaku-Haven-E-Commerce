@@ -18,7 +18,7 @@ class AccountController extends Controller
 
     public function loadSection($section)
     {
-        $validSections = ['profile', 'address', 'wishlist', 'returns', 'cancellations'];
+        $validSections = ['profile', 'address', 'changepassword','wishlist', 'returns', 'cancellations'];
 
         if (in_array($section, $validSections)) {
             $user = auth()->user(); // Get user data
@@ -36,6 +36,9 @@ class AccountController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'phone' => 'nullable|string|max:20',
+            'gender' => 'nullable|in:male,female,other',
+            'dob' => 'nullable|date',
             'current_password' => 'nullable|string',
             'new_password' => 'nullable|string|min:8|confirmed',
         ]);
@@ -44,6 +47,16 @@ class AccountController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
     
+        $user->save();
+    
+        // Make sure response is returned
+        return redirect()->route('frontend.account.index')->with('success', 'Profile updated successfully!');
+    }
+    
+    public function changePassword()
+    {
+        return view('frontend.account.changepassword'); // Ensure this view file exists
+
         // Handle password update
         if ($request->filled('current_password')) {
             if (!Hash::check($request->current_password, $user->password)) {
@@ -55,9 +68,7 @@ class AccountController extends Controller
         $user->save();
     
         // Make sure response is returned
-        return redirect()->route('frontend.account.index')->with('success', 'Profile updated successfully!');
+        return redirect()->route('frontend.account.index')->with('success', 'Change password updated successfully!');
     }
-    
-
 
 }

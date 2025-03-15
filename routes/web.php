@@ -113,6 +113,11 @@ Route::middleware('auth','role:user')->group(function(){
     Route::get('/account', [AccountController::class, 'index'])->name('frontend.account.index');
     Route::get('/account/{section}', [AccountController::class, 'loadSection'])->name('frontend.account.section');
         
+    Route::prefix('frontend')->name('frontend.')->group(function () {
+        Route::get('/account/changepassword', [AccountController::class, 'changePassword'])->name('account.changepassword');
+    });
+
+    
     // Add this route to handle profile updates
     Route::put('/account/update', [AccountController::class, 'updateProfile'])->name('frontend.account.update');
 
