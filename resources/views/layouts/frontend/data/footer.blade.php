@@ -5,13 +5,17 @@
             <!-- Company Info -->
             <div class="col-lg-3 col-md-6 mb-4">
                 <h5>Otaku Haven</h5>
-                <p>Get 10% off your first order</p>
-                <div class="email-subscribe">
-                    <input type="email" class="email-input" placeholder="Enter your email">
-                    <button class="send-btn"><i class="bi bi-send"></i></button>
+                <p>Want to customize your own anime merch? Visit our page!</p>
+                <div class="visit-page">
+                    <a href="https://www.facebook.com/BibimeowOtakuHaven" target="_blank" class="btn" 
+                    style="background-color: transparent; padding: 10px 15px; border-radius: 5px; text-decoration: none; display: inline-block; color: rgba(255, 255, 255, 0.6);"
+                        onmouseover="this.style.textDecoration='underline'" 
+                        onmouseout="this.style.textDecoration='none'">
+                        Visit Our Facebook Page
+                    </a>
                 </div>
             </div>
-            
+
             <!-- Support -->
             <div class="col-lg-3 col-md-6 mb-4">
                 <h5>Support</h5>
