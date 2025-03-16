@@ -1,10 +1,5 @@
 @extends('layouts.frontend.app')
 @section('content')
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Carousel Section Begin -->
     <section class="carousel-section" style="margin-top: 15px; margin-bottom: 50px;">
@@ -159,7 +154,7 @@
                     </div>
                 </div>
                 <div class="col-auto">
-                    <a href="{{ route('category.index') }}">
+                    <a href="{{ route('product.index') }}">
                         <button class="view-all-btn text-white px-4 py-2 rounded">View All</button>
                     </a>
                 </div>
@@ -210,39 +205,35 @@
     </div>
     <section class="product spad">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-4">
+            <div class="row d-flex align-items-center justify-content-between">
+                <div class="col-auto">
                     <div class="section-title">
-                        <h4>New product</h4>
+                        <h4 class="m-0">New Product</h4>
                     </div>
                 </div>
-                <div class="col-lg-8 col-md-8">
-                    <ul class="filter__controls">
-                        <li class="active" data-filter="*">All</li>
-                        @foreach ($data['new_categories'] as $new_categories)
-                            <li data-filter=".{{ $new_categories->slug }}">{{ $new_categories->name }}</li>
-                        @endforeach
-                    </ul>
+                <div class="col-auto">
+                    <a href="{{ route('product.index') }}">
+                        <button class="view-all-btn text-white px-4 py-2 rounded">View All</button>
+                    </a>
                 </div>
             </div>
             <div class="row property__gallery">
                 @foreach ($data['new_categories'] as $new_categories2)
-                    @foreach ($new_categories2->Products()->limit(4)->get()
-                as $product)
+                    @foreach ($new_categories2->Products()->limit(4)->get() as $product)
                         <div class="col-lg-3 col-md-4 col-sm-6 mix {{ $new_categories2->slug }}">
                             @component('components.frontend.product-card')
                                 @slot('image', asset('storage/' . $product->thumbnails))
                                 @slot('route', route('product.show', ['categoriSlug' => $new_categories2->slug, 'productSlug' =>
                                     $product->slug]))
-                                    @slot('name', $product->name)
-                                    @slot('price', $product->price)
-                                @endcomponent
-                            </div>
-                        @endforeach
+                                @slot('name', $product->name)
+                                @slot('price', $product->price)
+                            @endcomponent
+                        </div>
                     @endforeach
-                </div>
+                @endforeach
             </div>
-        </section>
+        </div>
+    </section>
     <!-- Product Section End -->
 
     <!-- New Arrival Section Begin -->
@@ -342,126 +333,6 @@
         </div>
     </div>
     <!-- Services Section End -->
-
-    <div class="col-auto">
-    <!--<a href="{{ route('frontend.reviews.review') }}">-->
-    <button class="view-all-btn text-white px-4 py-2 rounded" data-bs-toggle="modal" data-bs-target="#reviewModal">
-        Rate Now
-    </button>
-    <!--</a>-->
-</div>
-
-    <!-- Review Modal -->
-<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="reviewModalLabel">Product Review</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="text-center">
-                    <img id="product-image" src="placeholder.png" alt="Product Image" class="img-fluid rounded mb-3">
-                    <h2 id="product-name" class="h4 font-weight-bold">Product Name</h2>
-                    <p id="product-details" class="text-muted">Size: Medium, Color: Red</p>
-
-                    <h4 class="mt-3">How's the Product?</h4>
-                    <div class="rating">
-                        <span id="rating">0</span>/5
-                    </div>
-
-                    <!-- Star Rating -->
-                    <div class="stars d-flex justify-content-center">
-                        <span class="star" data-value="1">★</span>
-                        <span class="star" data-value="2">★</span>
-                        <span class="star" data-value="3">★</span>
-                        <span class="star" data-value="4">★</span>
-                        <span class="star" data-value="5">★</span>
-                    </div>
-
-                    <p class="mt-3">Share your review:</p>
-                    <textarea id="review" class="form-control" placeholder="Write your review here"></textarea>
-
-                    <button id="submit" class="btn site-btn mt-3">Submit</button>
-
-                    <div class="reviews mt-4" id="reviews"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const stars = document.querySelectorAll(".star");
-    const rating = document.getElementById("rating");
-    const reviewText = document.getElementById("review");
-    const submitBtn = document.getElementById("submit");
-    const reviewsContainer = document.getElementById("reviews");
-
-    let selectedRating = 0; // Store the selected rating
-
-    // Hover effect
-    stars.forEach((star, index) => {
-        star.addEventListener("mouseover", () => {
-            highlightStars(index + 1); // Highlight up to hovered star
-        });
-
-        star.addEventListener("mouseout", () => {
-            highlightStars(selectedRating); // Restore selected rating
-        });
-
-        star.addEventListener("click", () => {
-            selectedRating = index + 1;
-            rating.innerText = selectedRating;
-        });
-    });
-
-    function highlightStars(count) {
-        stars.forEach((star, index) => {
-            star.classList.remove("one", "two", "three", "four", "five");
-            if (index < count) {
-                star.classList.add(getStarColorClass(count));
-            }
-        });
-    }
-
-    function getStarColorClass(value) {
-        switch (value) {
-            case 1: return "one";
-            case 2: return "two";
-            case 3: return "three";
-            case 4: return "four";
-            case 5: return "five";
-            default: return "";
-        }
-    }
-
-    submitBtn.addEventListener("click", () => {
-        const review = reviewText.value;
-        if (!selectedRating || !review) {
-            alert("Please select a rating and provide a review before submitting.");
-            return;
-        }
-
-        const reviewElement = document.createElement("div");
-        reviewElement.classList.add("review", "p-3", "border", "rounded", "mb-2");
-        reviewElement.innerHTML = `<p><strong>Rating: ${selectedRating}/5</strong></p><p>${review}</p>`;
-        reviewsContainer.appendChild(reviewElement);
-
-        // Reset form
-        reviewText.value = "";
-        selectedRating = 0;
-        rating.innerText = "0";
-        highlightStars(0);
-
-        // Close Modal After Submission
-        var modal = new bootstrap.Modal(document.getElementById('reviewModal'));
-        modal.hide(); 
-    });
-});
-</script>
-
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -703,7 +574,7 @@ document.addEventListener("DOMContentLoaded", function () {
             background: white;
             color: black;
             padding: 10px;
-            border-radius: 50%;
+            border-radius: 100%;
             text-align: center;
         }
         .game-btn {

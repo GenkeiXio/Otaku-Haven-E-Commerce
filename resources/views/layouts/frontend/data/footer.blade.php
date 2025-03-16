@@ -45,6 +45,7 @@
 </footer>
 
 <style>
+
 .email-subscribe {
     position: relative;
     max-width: 300px;
@@ -81,8 +82,10 @@
     background: #000;
     color: rgb(255, 255, 240);
     padding: 40px 0;
-    margin-top: 20px;
+    margin: 0; /* Removed margin-top and ensured no bottom margin */
+    margin-top: 30px;
 }
+
 .footer h5 {
     color: #F5F5F5;
 }

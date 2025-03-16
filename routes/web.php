@@ -112,22 +112,13 @@ Route::middleware('auth','role:user')->group(function(){
 
     Route::get('/account', [AccountController::class, 'index'])->name('frontend.account.index');
     Route::get('/account/{section}', [AccountController::class, 'loadSection'])->name('frontend.account.section');
-        
-    Route::prefix('frontend')->name('frontend.')->group(function () {
-        Route::get('/account/changepassword', [AccountController::class, 'changePassword'])->name('account.changepassword');
-    });
-
     
-    // Add this route to handle profile updates
+    // Route to handle profile updates
     Route::put('/account/update', [AccountController::class, 'updateProfile'])->name('frontend.account.update');
 
-    // Add this route to handle address
-    Route::get('/account/address', [AddressController::class, 'index'])->name('frontend.account.address');
-    Route::post('/account/address', [AddressController::class, 'store'])->name('address.store');
-    Route::get('/account/address/{id}/edit', [AddressController::class, 'edit'])->name('address.edit');
-    Route::post('/account/address/{id}', [AddressController::class, 'update'])->name('address.update');
-    Route::post('/account/address/{id}/set-default', [AddressController::class, 'setDefault'])->name('address.set_default');
-    Route::delete('/account/address/{id}', [AddressController::class, 'destroy'])->name('address.destroy');
+    // Route to handle change password updates
+    Route::get('/account/changepassword', [AccountController::class, 'changePassword'])->name('frontend.account.changepassword');
+    Route::put('/account/updatepassword', [AccountController::class, 'updatePassword'])->name('frontend.account.updatepassword');
 
 });
 

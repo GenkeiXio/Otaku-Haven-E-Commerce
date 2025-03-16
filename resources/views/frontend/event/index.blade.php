@@ -19,8 +19,8 @@
     <div class="label-container">
         <div class="label-icon"></div>
         <span>Featured</span>
-    </div>
-    <section class="product spad">
+    </div><br><br>
+    <section class="event">
         <div class="container">
             <div class="row d-flex align-items-center justify-content-between">
                 <div class="col-auto">
@@ -30,7 +30,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
 
     <!-- Upcoming Events Section End -->
@@ -57,9 +56,9 @@
     <!-- Previous Events Section Begin -->
     <div class="label-container">
         <div class="label-icon"></div>
-        <span>Featured</span>
-    </div>
-    <section class="product spad">
+        <span>Previous</span>
+    </div><br><br>
+    <section class="event">
         <div class="container">
             <div class="row d-flex align-items-center justify-content-between">
                 <div class="col-auto">
@@ -69,12 +68,11 @@
                 </div>
             </div>
         </div>
-    </div>
-
+    </section>
 
     <!-- Upcoming Events Section End -->
     <section class="event-listing-section">
-    <div class="container event-container-wrapper"> <!-- Add container class -->
+    <div class="container event-container-wrapper"> 
         <div class="event-container">
             <div class="event-date-container">
                 <div class="event-day">Sat</div>
@@ -93,7 +91,7 @@
     </section>
 
     <section class="event-listing-section">
-    <div class="container event-container-wrapper"> <!-- Add container class -->
+    <div class="container event-container-wrapper"> 
         <div class="event-container">
             <div class="event-date-container">
                 <div class="event-day">Sat</div>
@@ -104,13 +102,50 @@
                 <h2 class="event-details-title">AniGaiden Retro Cosplay 2024</h2>
                 <strong class="event-details-location">LCC Legazpi Event Center 1</strong>
                 <p>Legazpi City, Albay, Philippines</p>
-                <p>Step back in time and relive the golden age of anime at **AniGaiden Retro Cosplay 2024**! Celebrate classic anime, iconic characters, and old-school gaming with fellow fans. Enjoy cosplay competitions, nostalgic performances, retro gaming stations, and exclusive merchandise from the past decades.</p>
+                <p>Step back in time and relive the golden age of anime at AniGaiden Retro Cosplay 2024! Celebrate classic anime, iconic characters, and old-school gaming with fellow fans. Enjoy cosplay competitions, nostalgic performances, retro gaming stations, and exclusive merchandise from the past decades.</p>
             </div>
             <img class="event-image" src="{{ asset('ashion/img/event/anigaiden.jpg') }}" alt="Cosplay Carnival 2025">
         </div>
     </div>
     </section>
 
+    <section class="event-listing-section">
+    <div class="container event-container-wrapper"> 
+        <div class="event-container">
+            <div class="event-date-container">
+                <div class="event-day">Fri</div>
+                <div class="event-date-number">3</div>
+            </div>
+            <div class="event-details">
+                <div class="event-details-range">November 3 - November 5</div>
+                <h2 class="event-details-title">KOWAI Kosfest Spooky Cosplay Festival 2023</h2>
+                <strong class="event-details-location">2/F Activity Center Pacifc Mall Legazpi</strong>
+                <p>Legazpi City, Albay, Philippines</p>
+                <p>Step into the eerie and exciting world of cosplay at KOWAI Kosfest Spooky Cosplay Festival 2023! Join fellow fans for a thrilling celebration of all things spooky, supernatural, and anime-inspired. Get ready for spine-chilling cosplay competitions, horror-themed performances, interactive games, and exclusive merchandise. Whether you're a ghostly ghoul, a wicked witch, or your favorite dark fantasy character, this is the perfect event to embrace the spooky season in style!</p>
+            </div>
+            <img class="event-image" src="{{ asset('ashion/img/event/kowai.jpg') }}" alt="Cosplay Carnival 2025">
+        </div>
+    </div>
+    </section>
+
+    <section class="event-listing-section">
+    <div class="container event-container-wrapper"> 
+        <div class="event-container">
+            <div class="event-date-container">
+                <div class="event-day">Sun</div>
+                <div class="event-date-number">13</div>
+            </div>
+            <div class="event-details">
+                <div class="event-details-range">August 13 - August 16</div>
+                <h2 class="event-details-title">HOBBYIST Festival 2023</h2>
+                <strong class="event-details-location">Ayala Mall Legazpi</strong>
+                <p>Legazpi City, Albay, Philippines</p>
+                <p>Celebrate creativity and passion at HOBBYIST Festival 2023! Whether you're into anime, gaming, model kits, arts & crafts, or collectibles, this event is the ultimate gathering for hobby enthusiasts. Explore a variety of exhibits, participate in exciting workshops, showcase your talents in competitions, and connect with fellow hobbyists who share your interests. Don't miss out on exclusive merchandise, interactive activities, and a fun-filled experience at Ayala Mall Legazpi!</p>
+            </div>
+            <img class="event-image" src="{{ asset('ashion/img/event/hobbyist1.jpg') }}" alt="Cosplay Carnival 2025">
+        </div>
+    </div>
+    </section>
     <!-- Previous Events Section End -->
 
 @endsection
@@ -142,7 +177,7 @@
 /*---------------------
   EVENT
 -----------------------*/
-        
+
         .event-listing-section {
             font-family: Arial, sans-serif;
             margin: 0;
