@@ -39,17 +39,20 @@
                                 <div class="checkout__form__input">
                                     <p>Province <span>*</span></p>
                                     <select name="province_id" id="province_id" class="select-2" required>
-                                        <option value="" selected disabled>-- Select Province --</option>
+                                        <option value="" disabled>-- Select Province --</option>
                                         @foreach ($data['provinces'] as $province)
-                                            <option value="{{ $province->id }}">{{ $province->province_name }}</option>
+                                            <option value="{{ $province->id }}" {{ $province->province_name == 'Albay' ? 'selected' : '' }}>
+                                                {{ $province->province_name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
+                            
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="checkout__form__input">
                                     <p>City <span>*</span></p>
-                                    <select name="city_id" id="city_id" class="select-2" disabled required>
+                                    <select name="city_id" id="city_id" class="select-2" required>
                                         <option value="" selected disabled>-- Select City --</option>
                                     </select>
                                 </div>
@@ -65,7 +68,7 @@
                                     <p>Courier <span>*</span></p>
                                     <select name="courier" id="courier">
                                         <option value="jne" selected>J&T</option>
-                                        <option value="tiki">Ninja</option>
+                                        <option value="tiki">Ninja Van</option>
                                         <option value="pos">Flash Express</option>
                                     </select>
                                 </div>
@@ -119,10 +122,44 @@
     <!-- Checkout Section End -->
 @endsection
 @push('js')
-    <script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var selectedProvince = $("#province_id").val();
+        if (selectedProvince) {
+            loadCities(selectedProvince);
+        }
+
+        $("#province_id").change(function () {
+            var provinceID = $(this).val();
+            loadCities(provinceID);
+        });
+
+        function loadCities(provinceID) {
+            $("#city_id").prop("disabled", true);
+            $("#city_id").html('<option value="" selected disabled>Loading...</option>');
+
+            $.ajax({
+                url: "/get-cities/" + provinceID,
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    $("#city_id").empty().append('<option value="" selected disabled>-- Select City --</option>');
+                    $.each(data, function (key, city) {
+                        $("#city_id").append('<option value="' + city.id + '">' + city.city_name + '</option>');
+                    });
+                    $("#city_id").prop("disabled", false);
+                    checkCost(); // Call shipping cost function after cities load
+                },
+                error: function () {
+                    $("#city_id").html('<option value="" selected disabled>Error loading cities</option>');
+                }
+            });
+        }
+
         function checkCost() {
-            var origin = '{{ $data["shipping_address"]->city_id }}';
-            var destination = $('#city_id option:selected').data('id');
+            var origin = '{{ $data["shipping_address"]->city_id ?? 1 }}';
+            var destination = $('#city_id option:selected').val();
             var weight = "{{ $data['carts']->sum('total_weight_per_product') }}";
             var courier = $('#courier option:selected').val();
 
@@ -152,25 +189,6 @@
             });
         }
 
-        $('#province_id').on('change', function() {
-            var provinceId = $('#province_id option:selected').data('id');
-            $('#city_id').empty().append('<option value="">-- Loading Data --</option>');
-            $.ajax({
-                url: '/shipping/cities/' + provinceId,
-                type: "GET",
-                dataType: "json",
-                success: function(data) {
-                    if (data) {
-                        $('#city_id').empty().removeAttr('disabled').append('<option value="" selected>-- Select City --</option>');
-                        $.each(data, function(key, city) {
-                            $('#city_id').append('<option value="' + city.city_name + '" data-id="' + city.city_id + '">' + city.city_name + '</option>');
-                        });
-                        checkCost();
-                    }
-                }
-            });
-        });
-
         $('#city_id, #courier').on('change', checkCost);
 
         $('#shipping_method').on('change', function() {
@@ -185,5 +203,6 @@
             $('#shipping_cost').val(ongkir);
             $('#total').text('₱' + total);
         }
-    </script>
+    });
+</script>
 @endpush

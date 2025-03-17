@@ -21,19 +21,23 @@ class WebConfigSeeder extends Seeder
         //     3 = SELECT, 
         // ] 
 
-        // WEB
-        WebConfig::create([
-            'name'  => 'app_name',
-            'label' => 'Application Name',
-            'value' => 'Anime Store',
-            'type'  => 0
-        ]);
+        // Check if app_name exists before inserting
+        if (!WebConfig::where('name', 'app_name')->exists()) {
+            WebConfig::create([
+                'name'  => 'app_name',
+                'label' => 'Application Name',
+                'value' => 'Anime Store',
+                'type'  => 0
+            ]);
+        }
 
-        WebConfig::create([
-            'name'  => 'app_logo',
-            'label' => 'Logo',
-            'type'  => 2
-        ]);
-        
+        // Check if app_logo exists before inserting
+        if (!WebConfig::where('name', 'app_logo')->exists()) {
+            WebConfig::create([
+                'name'  => 'app_logo',
+                'label' => 'Logo',
+                'type'  => 2
+            ]);
+        }
     }
 }

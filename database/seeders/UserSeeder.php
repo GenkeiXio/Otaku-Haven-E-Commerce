@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+
 class UserSeeder extends Seeder
 {
     /**
@@ -14,17 +15,23 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // Create Role
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'user']);
+        // Check if roles exist before creating them
+        if (!Role::where('name', 'admin')->exists()) {
+            Role::create(['name' => 'admin']);
+        }
 
-        // Create User
-        $user = User::create([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('admin123')
-        ]);
-        $user->assignRole('admin');
+        if (!Role::where('name', 'user')->exists()) {
+            Role::create(['name' => 'user']);
+        }
 
+        // Check if admin user already exists before creating
+        if (!User::where('email', 'admin@gmail.com')->exists()) {
+            $user = User::create([
+                'name' => 'Admin',
+                'email' => 'admin@gmail.com',
+                'password' => bcrypt('admin123'),
+            ]);
+            $user->assignRole('admin');
+        }
     }
 }

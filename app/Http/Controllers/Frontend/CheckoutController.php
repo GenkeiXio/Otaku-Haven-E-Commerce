@@ -9,6 +9,7 @@ use App\Models\Province; // Use the Province model
 use App\Repositories\CrudRepositories;
 use App\Services\Feature\CartService;
 use App\Services\Feature\CheckoutService;
+use App\Models\City;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,7 @@ class CheckoutController extends Controller
         $data['carts'] = $this->cartService->getUserCart();
         $data['provinces'] = Province::all(); // Fetch provinces from the database
         $data['shipping_address'] = ShippingAddress::first();
+        $data['cities'] = City::where('province_id', 1)->get();
         
         return view('frontend.checkout.index', compact('data'));
     }

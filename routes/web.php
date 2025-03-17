@@ -20,6 +20,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Contracts\Role;
+use App\Http\Controllers\LocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,6 +108,7 @@ Route::middleware('auth','role:user')->group(function(){
         Route::get('/',[CheckoutController::class,'index'])->name('index');
         Route::post('/process',[CheckoutController::class,'process'])->name('process');
         Route::post('/shipping/cost', [ShippingController::class, 'getShippingCost'])->name('shipping.cost');
+        Route::get('/get-cities/{province_id}', [LocationController::class, 'getCities'])->name('getCities');
     });
 
 
