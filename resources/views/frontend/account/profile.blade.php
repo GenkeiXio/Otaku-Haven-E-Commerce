@@ -25,7 +25,7 @@
             <div class="mb-3">
                 <label for="phone" class="form-label">Phone Number</label>
                 <input type="text" class="form-control" id="phone" name="phone" 
-                       value="{{ old('phone', Auth::user()->phone) }}" required>
+                    value="{{ old('phone', Auth::user()->phone) }}" required>
             </div>
 
             <div class="mb-3">
@@ -40,7 +40,7 @@
             <div class="mb-3">
                 <label for="dob" class="form-label">Date of Birth</label>
                 <input type="date" class="form-control" id="dob" name="dob" 
-                       value="{{ old('dob', Auth::user()->dob) }}" required>
+                    value="{{ old('dob', Auth::user()->dob) }}" required>
             </div>
 
             <div class="d-flex justify-content-between">

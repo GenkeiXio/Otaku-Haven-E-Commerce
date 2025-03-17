@@ -6,7 +6,7 @@
         <h5>Change Password</h5>
     </div>
     <div class="card-body">
-        <form action="{{ route('frontend.account.update') }}" method="POST">
+        <form action="{{ route('frontend.account.updatepassword') }}" method="POST">
             @csrf
             @method('PUT')
 

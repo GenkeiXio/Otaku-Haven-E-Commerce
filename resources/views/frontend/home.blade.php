@@ -154,7 +154,7 @@
                     </div>
                 </div>
                 <div class="col-auto">
-                    <a href="{{ route('category.index') }}">
+                    <a href="{{ route('product.index') }}">
                         <button class="view-all-btn text-white px-4 py-2 rounded">View All</button>
                     </a>
                 </div>
@@ -205,39 +205,35 @@
     </div>
     <section class="product spad">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-4">
+            <div class="row d-flex align-items-center justify-content-between">
+                <div class="col-auto">
                     <div class="section-title">
-                        <h4>New product</h4>
+                        <h4 class="m-0">New Product</h4>
                     </div>
                 </div>
-                <div class="col-lg-8 col-md-8">
-                    <ul class="filter__controls">
-                        <li class="active" data-filter="*">All</li>
-                        @foreach ($data['new_categories'] as $new_categories)
-                            <li data-filter=".{{ $new_categories->slug }}">{{ $new_categories->name }}</li>
-                        @endforeach
-                    </ul>
+                <div class="col-auto">
+                    <a href="{{ route('product.index') }}">
+                        <button class="view-all-btn text-white px-4 py-2 rounded">View All</button>
+                    </a>
                 </div>
             </div>
             <div class="row property__gallery">
                 @foreach ($data['new_categories'] as $new_categories2)
-                    @foreach ($new_categories2->Products()->limit(4)->get()
-                as $product)
+                    @foreach ($new_categories2->Products()->limit(4)->get() as $product)
                         <div class="col-lg-3 col-md-4 col-sm-6 mix {{ $new_categories2->slug }}">
                             @component('components.frontend.product-card')
                                 @slot('image', asset('storage/' . $product->thumbnails))
                                 @slot('route', route('product.show', ['categoriSlug' => $new_categories2->slug, 'productSlug' =>
                                     $product->slug]))
-                                    @slot('name', $product->name)
-                                    @slot('price', $product->price)
-                                @endcomponent
-                            </div>
-                        @endforeach
+                                @slot('name', $product->name)
+                                @slot('price', $product->price)
+                            @endcomponent
+                        </div>
                     @endforeach
-                </div>
+                @endforeach
             </div>
-        </section>
+        </div>
+    </section>
     <!-- Product Section End -->
 
     <!-- New Arrival Section Begin -->
@@ -578,7 +574,7 @@
             background: white;
             color: black;
             padding: 10px;
-            border-radius: 50%;
+            border-radius: 100%;
             text-align: center;
         }
         .game-btn {

@@ -13,8 +13,6 @@
                     <span>
                         @if(request()->segment(2) === 'profile')
                             Profile
-                        @elseif(request()->segment(2) === 'address')
-                            Address
                         @elseif(request()->segment(2) === 'changepassword')
                             Change Password
                         @elseif(request()->segment(2) === 'wishlist')
@@ -38,14 +36,19 @@
         <div class="row">
             <!-- Sidebar -->
             <div class="col-md-3">
-                <h6>Manage My Account</h6>
+                <h6>
+                    <img src="{{ asset('ashion/img/logo/profile.png') }}" alt="Profile Logo" class="profile-logo">
+                    Manage My Account
+                </h6>
                 <ul class="list-group">
                     <li class="list-group-item"><a href="{{ route('frontend.account.section', 'profile') }}">Profile</a></li>
-                    <li class="list-group-item"><a href="{{ route('frontend.account.section', 'address') }}">Address</a></li>
                     <li class="list-group-item"><a href="{{ route('frontend.account.changepassword', 'changepassword') }}">Change Password</a></li>
                 </ul>
 
-                <h6 class="mt-4">My Orders</h6>
+                <h6 class="mt-4">
+                    <img src="{{ asset('ashion/img/logo/purchase.png') }}" alt="Profile Logo" class="profile-logo">
+                    My Purchase
+                </h6>
                 <ul class="list-group">
                     <li class="list-group-item"><a href="{{ route('frontend.account.section', 'wishlist') }}" class="load-section" data-target="wishlist">Wishlist</a></li>
                     <li class="list-group-item"><a href="{{ route('frontend.account.section', 'cancellations') }}" class="load-section" data-target="cancellations">Cancelled</a></li>
@@ -181,6 +184,13 @@ body {
 
 .btn-secondary:hover {
     background-color: #5a6268;
+}
+
+.profile-logo {
+    width: 28px; /* Adjust size as needed */
+    height: auto;
+    margin-right: 8px; /* Add spacing between logo and text */
+    vertical-align: middle;
 }
 
 </style>

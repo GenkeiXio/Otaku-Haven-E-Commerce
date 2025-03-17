@@ -2,7 +2,6 @@
     <h6>Manage My Account</h6>
     <ul class="list-group">
         <li class="list-group-item"><a href="#" class="load-section" data-target="profile">Profile</a></li>
-        <li class="list-group-item"><a href="#" class="load-section" data-target="address">Address</a></li>
         <li class="list-group-item"><a href="#" class="load-section" data-target="changepassword">Change Password</a></li>
     </ul>
 

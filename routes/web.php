@@ -114,22 +114,13 @@ Route::middleware('auth','role:user')->group(function(){
 
     Route::get('/account', [AccountController::class, 'index'])->name('frontend.account.index');
     Route::get('/account/{section}', [AccountController::class, 'loadSection'])->name('frontend.account.section');
-        
-    Route::prefix('frontend')->name('frontend.')->group(function () {
-        Route::get('/account/changepassword', [AccountController::class, 'changePassword'])->name('account.changepassword');
-    });
-
     
-    // Add this route to handle profile updates
+    // Route to handle profile updates
     Route::put('/account/update', [AccountController::class, 'updateProfile'])->name('frontend.account.update');
 
-    // Add this route to handle address
-    Route::get('/account/address', [AddressController::class, 'index'])->name('frontend.account.address');
-    Route::post('/account/address', [AddressController::class, 'store'])->name('address.store');
-    Route::get('/account/address/{id}/edit', [AddressController::class, 'edit'])->name('address.edit');
-    Route::post('/account/address/{id}', [AddressController::class, 'update'])->name('address.update');
-    Route::post('/account/address/{id}/set-default', [AddressController::class, 'setDefault'])->name('address.set_default');
-    Route::delete('/account/address/{id}', [AddressController::class, 'destroy'])->name('address.destroy');
+    // Route to handle change password updates
+    Route::get('/account/changepassword', [AccountController::class, 'changePassword'])->name('frontend.account.changepassword');
+    Route::put('/account/updatepassword', [AccountController::class, 'updatePassword'])->name('frontend.account.updatepassword');
 
 });
 
@@ -144,6 +135,10 @@ Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/product', [FrontendProductController::class,'index'])->name('product.index');
 
 Route::get('/search',[FrontendProductController::class,'search'])->name('product.search');
+
+// Route for Product List, Review, and Description Pages
+Route::view('/review', 'review');
+Route::view('/product-description', 'product_description');
 
 // Route Category
 Route::get('/category', [FrontendCategoryController::class,'index'])->name('category.index');
@@ -172,5 +167,8 @@ Route::post('/product/{id}/stock', [ProductController::class, 'updateStock'])->n
 
 // Route Event Page
 Route::get('/event/index', function () { return view('frontend.event.index'); })->name('frontend.event.index');
+
+// Route Reviews Page
+Route::get('/reviews/review', function () { return view('frontend.reviews.review'); })->name('frontend.reviews.review');
 
 require __DIR__ . '/auth.php';
