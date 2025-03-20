@@ -72,14 +72,9 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="checkout__form__input">
-                                    <p>Shipment Method <span>*</span></p>
-                                    <input type="text" name="shipping_method" id="shipping_method" value="{{ old('shipping_method', $shipping_address->shipping_method ?? '') }}" required>
-                                </div>
-                            </div>
                         </div>
                     </div>
+
                     <div class="col-lg-4">
                         <div class="checkout__order">
                             <h5>Your order</h5>
@@ -103,12 +98,30 @@
                             </div>
                             <div class="checkout__order__total">
                                 <ul>
-                                    <li>Subtotal <span>{{ formatPeso($data['carts']->sum('total_price_per_product')) }}</span>
-                                    </li>
+                                    <li>Subtotal <span>{{ formatPeso($data['carts']->sum('total_price_per_product')) }}</span></li>
                                     <li>Shipping Cost <span id="text-cost">₱ 0</span></li>
                                     <li>Total <span id="total">{{ formatPeso($data['carts']->sum('total_price_per_product')) }}</span></li>
                                     <input type="hidden" name="shipping_cost" id="shipping_cost">
                                 </ul>
+                            </div>
+                            <div class="payment-options">
+                                <label class="payment-option">
+                                    <input type="radio" name="payment_method" value="online" required>
+                                    <div class="option-box">
+                                        <span>Online Payment</span>
+                                    </div>
+                                    <div>
+                                        <img src="{{ asset('images/gcash.png') }}" alt="GCash">
+                                        <img src="{{ asset('images/paypal.png') }}" alt="PayPal">
+                                    </div>
+                                </label>
+                            
+                                <label class="payment-option">
+                                    <input type="radio" name="payment_method" value="cod" required>
+                                    <div class="option-box">
+                                        <span>Cash on Delivery</span>
+                                    </div>
+                                </label>
                             </div>
                             <button type="submit" class="site-btn">Place order</button>
                         </div>
@@ -199,4 +212,47 @@
         }
     });
 </script>
+
+<style>
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+}
+
+.payment-option input {
+    margin-right: 10px;
+}
+
+.option-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.option-box img {
+    width: 32px;
+    height: auto;
+}
+
+.payment-option:hover,
+.payment-option input:checked + .option-box {
+    border-color: #000;
+    background: #f8f8f8;
+}
+
+</style>
 @endpush

@@ -27,8 +27,8 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        $data['order'] = Order::find($id);
-        return view('backend.feature.order.show',compact('data'));
+        $data['order'] = Order::with(['orderDetail.product', 'province'])->find($id);
+        return view('backend.feature.order.show', compact('data'));
     }
 
     public function inputResi(Request $request)
