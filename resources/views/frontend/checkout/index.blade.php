@@ -52,11 +52,10 @@
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="checkout__form__input">
                                     <p>City <span>*</span></p>
-                                    <select name="city_id" id="city_id" class="select-2" required>
-                                        <option value="" selected disabled>-- Select City --</option>
-                                    </select>
+                                    <input type="text" name="city_name" value="{{ old('city_name', $shipping_address->city_name ?? '') }}" required>
                                 </div>
                             </div>
+                            
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="checkout__form__input">
                                     <p>Address Detail <span>*</span></p>
@@ -76,8 +75,7 @@
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="checkout__form__input">
                                     <p>Shipment Method <span>*</span></p>
-                                    <select name="shipping_method" id="shipping_method" required>
-                                    </select>
+                                    <input type="text" name="shipping_method" id="shipping_method" value="{{ old('shipping_method', $shipping_address->shipping_method ?? '') }}" required>
                                 </div>
                             </div>
                         </div>
@@ -124,14 +122,10 @@
 @push('js')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
-        var selectedProvince = $("#province_id").val();
-        if (selectedProvince) {
-            loadCities(selectedProvince);
-        }
-
+    (document).ready(function () {
         $("#province_id").change(function () {
             var provinceID = $(this).val();
+            console.log("Selected Province ID:", provinceID);
             loadCities(provinceID);
         });
 
@@ -149,9 +143,9 @@
                         $("#city_id").append('<option value="' + city.id + '">' + city.city_name + '</option>');
                     });
                     $("#city_id").prop("disabled", false);
-                    checkCost(); // Call shipping cost function after cities load
                 },
-                error: function () {
+                error: function (xhr) {
+                    console.log("Error:", xhr.responseText);
                     $("#city_id").html('<option value="" selected disabled>Error loading cities</option>');
                 }
             });

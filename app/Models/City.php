@@ -9,13 +9,12 @@ class City extends Model
 {
     use HasFactory;
 
-    protected $table = 'cities'; // Table name
-
     protected $fillable = ['province_id', 'city_name'];
 
+    // Relationship to Province
     public function province()
     {
-        return $this->belongsTo(Province::class, 'province_id');
+        return $this->belongsTo(Province::class);
     }
 }
 

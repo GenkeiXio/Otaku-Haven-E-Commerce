@@ -9,7 +9,6 @@ use App\Models\Province; // Use the Province model
 use App\Repositories\CrudRepositories;
 use App\Services\Feature\CartService;
 use App\Services\Feature\CheckoutService;
-use App\Models\City;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -28,7 +27,6 @@ class CheckoutController extends Controller
         $data['carts'] = $this->cartService->getUserCart();
         $data['provinces'] = Province::all(); // Fetch provinces from the database
         $data['shipping_address'] = ShippingAddress::first();
-        $data['cities'] = City::where('province_id', 1)->get();
         
         return view('frontend.checkout.index', compact('data'));
     }
@@ -36,7 +34,14 @@ class CheckoutController extends Controller
     public function process(Request $request)
     {
         try {
-            $this->checkoutService->process($request->all());
+            $checkoutData = [
+                'province_id' => $request->province_id, // Store Province ID
+                'city_name' => $request->city_name, // Store City Name instead of City ID
+                'shipping_method' => $request->shipping_method, // Store the Shipment Method
+            ];
+
+            $this->checkoutService->process($checkoutData);
+
             return redirect()->route('transaction.index')->with('success', __('message.order_success'));
         } catch (Exception $e) {
             return back()->with('error', 'Something went wrong: ' . $e->getMessage());

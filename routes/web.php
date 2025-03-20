@@ -108,7 +108,7 @@ Route::middleware('auth','role:user')->group(function(){
         Route::get('/',[CheckoutController::class,'index'])->name('index');
         Route::post('/process',[CheckoutController::class,'process'])->name('process');
         Route::post('/shipping/cost', [ShippingController::class, 'getShippingCost'])->name('shipping.cost');
-        Route::get('/get-cities/{province_id}', [LocationController::class, 'getCities'])->name('getCities');
+        Route::get('/get-cities/{provinceID}', [LocationController::class, 'getCities']);
     });
 
 
