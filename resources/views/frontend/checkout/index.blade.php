@@ -110,7 +110,7 @@
                                     <div class="option-box">
                                         <span>Online Payment</span>
                                     </div>
-                                    <div>
+                                    <div class="payment-icons">
                                         <img src="{{ asset('images/gcash.png') }}" alt="GCash">
                                         <img src="{{ asset('images/paypal.png') }}" alt="PayPal">
                                     </div>
@@ -223,7 +223,6 @@
 .payment-option {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 10px 15px;
     border: 2px solid #ddd;
     border-radius: 8px;
@@ -231,6 +230,12 @@
     transition: all 0.3s ease;
     width: 100%;
     max-width: 400px;
+}
+
+.payment-option:hover,
+.payment-option input:checked + .option-box {
+    border-color: #000;
+    background: #f8f8f8;
 }
 
 .payment-option input {
@@ -241,18 +246,18 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-grow: 1;
 }
 
-.option-box img {
-    width: 32px;
+.payment-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.payment-icons img {
+    width: 50px; /* Adjust size */
     height: auto;
 }
-
-.payment-option:hover,
-.payment-option input:checked + .option-box {
-    border-color: #000;
-    background: #f8f8f8;
-}
-
 </style>
 @endpush
