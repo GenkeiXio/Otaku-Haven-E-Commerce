@@ -31,10 +31,27 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->except('_token');
-        $this->product->store($data,true,['thumbnails'],'product/thumbnails');
-        return redirect()->route('master.product.index')->with('success',__('message.store'));
+        $request->validate([
+            'name' => 'required|string',
+            'price' => 'required|numeric',
+            'categories_id' => 'required|exists:categories,id',
+            'thumbnails' => 'nullable|image|mimes:jpg,jpeg,png|max:2048' // Ensure valid image
+        ]);
+
+        // Prepare data except thumbnails
+        $data = $request->except('_token', 'thumbnails');
+
+        // Handle File Upload
+        if ($request->hasFile('thumbnails')) {
+            $path = $request->file('thumbnails')->store('product/thumbnails', 'public'); // Save file
+            $data['thumbnails'] = $path; // Save file path to database
+        }
+
+        Product::create($data);
+
+        return redirect()->route('master.product.index')->with('success', __('message.store'));
     }
+
 
     public function show($id)
     {
