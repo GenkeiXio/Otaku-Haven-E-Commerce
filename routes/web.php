@@ -149,6 +149,9 @@ Route::get('/category/{slug}', [FrontendCategoryController::class,'show'])->name
 Route::get('/product/{categoriSlug}/{productSlug}',[FrontendProductController::class,'show'])->name('product.show');
 
 
+Route::get('/frontend/product', [FrontendProductController::class, 'index'])->name('frontend.product.index');
+
+
 // Route Policies
 Route::get('/policies/faq', function () { return view('frontend.policies.faq'); })->name('frontend.policies.faq');
 
