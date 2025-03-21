@@ -11,26 +11,18 @@ class Product extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $appends = ['thumbnails_path','price_₱','total_sold'];
-    protected $fillable = ['name', 'category_id', 'thumbnails_path', 'price', 'stock', 'total_sold'];
+    protected $fillable = ['name', 'categories_id', 'slug', 'thumbnails', 'price', 'stock', 'weight', 'description'];
 
-    public function Category()
+    protected $appends = ['thumbnails_path', 'price_format', 'total_sold'];
+
+    public function category()
     {
-        return $this->belongsTo(Category::class,'categories_id');
-    }
-    
-    public function updateStock($quantity, $action = 'subtract')
-    {
-        if ($action === 'subtract') {
-            $this->decrement('stock', $quantity);
-        } elseif ($action === 'add') {
-            $this->increment('stock', $quantity);
-        }
+        return $this->belongsTo(Category::class, 'categories_id');
     }
 
-    public function OrderDetails()
+    public function orderDetails()  // ✅ Fix: Define orderDetails relationship
     {
-        return $this->hasMany(OrderDetail::class);
+        return $this->hasMany(OrderDetail::class, 'product_id');
     }
 
     public function getThumbnailsPathAttribute()
@@ -38,15 +30,15 @@ class Product extends Model
         return asset('storage/' . $this->thumbnails);
     }
 
-    public function getPricerupiahAttribute()
+    public function getPriceFormatAttribute()
     {
-        return "₱ " . number_format($this->price,0,',','.');
+        return "₱ " . number_format($this->price, 0, '.', ',');
     }
 
     public function getTotalSoldAttribute()
     {
-        return $this->OrderDetails()->whereHas('Order',function($q){
-            $q->whereIn('status',[2,3]);
+        return $this->orderDetails()->whereHas('order', function ($q) {
+            $q->whereIn('status', [2, 3]);
         })->sum('qty');
     }
 }
