@@ -54,6 +54,10 @@
                     <li class="list-group-item"><a href="{{ route('frontend.account.section', 'cancellations') }}" class="load-section" data-target="cancellations">Cancelled</a></li>
                     <li class="list-group-item"><a href="{{ route('frontend.account.section', 'returns') }}" class="load-section" data-target="returns">Return Refund</a></li>
                 </ul>
+                <h6 class="mt-4">
+                    <img src="{{ asset('ashion/img/logo/profile.png') }}" alt="Customer Support Logo" class="profile-logo">
+                    Customer Suport
+                </h6>
             </div>
 
             <!-- Dynamic Content Section -->
