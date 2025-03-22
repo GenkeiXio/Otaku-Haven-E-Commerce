@@ -52,9 +52,17 @@
                                 <input type="hidden" name="cart_product_id" value="{{ $data['product']->id }}">
                             </div>
                             <button type="submit" class="cart-btn"><span class="icon_bag_alt"></span> Add to Cart</button>
+                            </form>
+                            <!-- Wishlist Button -->
+                            <button type="button" class="wishlist-btn {{ in_array($data['product']->id, session('wishlist', [])) ? 'active' : '' }}" 
+                                data-product-id="{{ $data['product']->id }}">
+                                <i class="fa fa-heart"></i>
+                            </button>
+                        
+
                         </div>
                         <div class="product__details__widget">
-                        </form>
+                        
                             <ul>
                                 <li>
                                     <span>Weight: </span>
@@ -104,4 +112,62 @@
         </div>
     </section>
     <!-- Product Details Section End -->
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll(".wishlist-btn").forEach(button => {
+            button.addEventListener("click", function() {
+            let productId = this.getAttribute("data-product-id");
+            let isActive = this.classList.contains("active");
+
+            let formData = new FormData();
+            formData.append("product_id", productId);
+            formData.append("_token", document.querySelector('meta[name="csrf-token"]').getAttribute("content"));
+
+            fetch(isActive ? "{{ route('wishlist.remove') }}" : "{{ route('wishlist.add') }}", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                this.classList.toggle("active", !isActive);
+
+                // Reload wishlist page automatically
+                if (!isActive) {
+                    setTimeout(() => {
+                        window.location.href = "{{ route('wishlist.index') }}";
+                    }, 500);
+                }
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    });
+     // Makinig sa wishlistUpdated event at alisin ang active class
+     document.addEventListener("wishlistUpdated", function(event) {
+        let productId = event.detail.productId;
+        let heartButton = document.querySelector(`.wishlist-btn[data-product-id="${productId}"]`);
+        if (heartButton) {
+            heartButton.classList.remove("active");
+        }
+    });
+});
+</script>
+
+                            <style>
+                            .wishlist-btn {
+                                font-size: 32px;
+                                color: #ccc;
+                                margin-left: 7px;
+                                background: none;
+                                border: none;
+                                cursor: pointer;
+                                transition: color 0.3s ease;
+                            }
+ 
+                            .wishlist-btn.active {
+                                color: red;
+                            }
+                            </style>
+
 @endsection

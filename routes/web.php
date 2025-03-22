@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\Master\ProductController;
 use App\Http\Controllers\Frontend\AccountController;
 use App\Http\Controllers\Frontend\AddressController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Contracts\Role;
 use App\Http\Controllers\LocationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +62,7 @@ Route::prefix('app')->group(function () {
                 Route::post('/create',[ProductController::class,'store'])->name('store');
                 Route::get('/show/{id}',[ProductController::class,'show'])->name('show');
                 Route::get('/edit/{id}',[ProductController::class,'edit'])->name('edit');
-                Route::put('/update/{id}', [ProductController::class, 'update'])->name('update');
+                Route::post('/update/{id}',[ProductController::class,'update'])->name('update');
                 Route::get('/delete/{id}',[ProductController::class,'delete'])->name('delete');
             });
 
@@ -88,14 +90,24 @@ Route::prefix('app')->group(function () {
 
 });
 
-Route::middleware('auth','role:user')->group(function(){
+Route::middleware('auth','role:user')->group(function(  ){
 
     Route::prefix('cart')->name('cart.')->group(function(){
         Route::get('/',[CartController::class,'index'])->name('index');
         Route::post('/store',[CartController::class,'store'])->name('store');
         Route::post('/update',[CartController::class,'update'])->name('update');
         Route::get('/delete/{id}',[CartController::class,'delete'])->name('delete');
+        Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
     });
+
+    Route::prefix('wishlist')->name('wishlist.')->group(function () {
+        Route::get('/', [WishlistController::class, 'index'])->name('index'); // Fix: Removed '/wishlist'
+        Route::post('/add', [WishlistController::class, 'add'])->name('add'); // Fix: Removed '/wishlist'
+        Route::post('/remove', [WishlistController::class, 'remove'])->name('remove'); // Fix: Removed '/wishlist'
+        Route::post('/move-to-cart', [WishlistController::class, 'moveToCart'])->name('moveToCart'); // Fix: Removed '/wishlist'
+    });
+    
+
 
     Route::prefix('transaction')->name('transaction.')->group(function(){
         Route::get('/',[TransacationController::class,'index'])->name('index');
@@ -108,7 +120,7 @@ Route::middleware('auth','role:user')->group(function(){
         Route::get('/',[CheckoutController::class,'index'])->name('index');
         Route::post('/process',[CheckoutController::class,'process'])->name('process');
         Route::post('/shipping/cost', [ShippingController::class, 'getShippingCost'])->name('shipping.cost');
-        Route::get('/get-cities/{provinceID}', [LocationController::class, 'getCities']);
+        Route::get('/get-cities/{province_id}', [LocationController::class, 'getCities'])->name('getCities');
     });
 
 
@@ -147,7 +159,6 @@ Route::get('/category/{slug}', [FrontendCategoryController::class,'show'])->name
 
 
 Route::get('/product/{categoriSlug}/{productSlug}',[FrontendProductController::class,'show'])->name('product.show');
-
 
 Route::get('/frontend/product', [FrontendProductController::class, 'index'])->name('frontend.product.index');
 

@@ -57,4 +57,22 @@ class CartController extends Controller
             dd($th);
         }
     }
+
+    public function addToCart(Request $request)
+    {
+        $product = Product::find($request->product_id);
+
+        if (!$product) {
+            return response()->json(['success' => false, 'message' => 'Product not found.']);
+        }
+
+        // I-save sa cart (Assuming may Cart model ka)
+        Cart::create([
+            'product_id' => $product->id,
+            'user_id' => auth()->id(), // Siguraduhin na may authentication
+            'quantity' => 1
+        ]);
+
+        return response()->json(['success' => true, 'message' => 'Product added to cart.']);
+    }
 }
